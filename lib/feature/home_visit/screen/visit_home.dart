@@ -29,7 +29,7 @@ class VisitHome extends StatelessWidget {
                     flex: 2,
                     child: Column(
                       children: [
-                        Container(
+                        SizedBox(
                           height: Get.height * 0.07,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -136,7 +136,7 @@ class VisitHome extends StatelessWidget {
                                           AppController.to.idService =
                                               HomeVisitController
                                                   .to.listData[index]!.id;
-                                          Get.toNamed("/ListVisit");
+                                          Get.toNamed("/PatientsList");
                                         }
                                       },
                                     );

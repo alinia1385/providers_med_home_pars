@@ -11,16 +11,16 @@ import 'package:note_app/core/model/base_list_daynamic_standard.dart';
 import 'package:note_app/feature/home_visit/data/model/model_service_item.dart';
 import 'package:note_app/feature/home_visit/data/model/model_services.dart';
 import 'package:note_app/feature/home_visit/data/remote/home_visit_remote.dart';
-import 'package:note_app/feature/listVist/data/model/model_list_visit.dart';
-import 'package:note_app/feature/listVist/data/remote/list_visit_remote.dart';
 import 'package:note_app/feature/login/date/model/model_login_form_send_code_data.dart';
 
 import 'package:note_app/feature/login/date/remote/login_remote.dart';
+import 'package:note_app/feature/patients_request/data/model/model_list_visit.dart';
+import 'package:note_app/feature/patients_request/data/remote/list_visit_remote.dart';
 
 
 
-class ListVisitController extends GetxController {
-  static ListVisitController get to => Get.find<ListVisitController>();
+class PatientsRequestController extends GetxController {
+  static PatientsRequestController get to => Get.find<PatientsRequestController>();
 
 
 

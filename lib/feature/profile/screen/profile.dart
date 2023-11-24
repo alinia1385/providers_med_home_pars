@@ -62,7 +62,7 @@ class Profile extends StatelessWidget {
                         //   );
                         //
                         // });
-                        Get.toNamed("/Home");
+                        Get.toNamed("/VisitHome");
                       },
                       child: Container(
                         margin: const EdgeInsets.only(top: 15, left: 50),

@@ -2,8 +2,6 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 import 'package:note_app/core/app.dart';
 import 'package:note_app/core/controller/AppController.dart';
 import 'package:note_app/core/model/base_list_daynamic.dart';
