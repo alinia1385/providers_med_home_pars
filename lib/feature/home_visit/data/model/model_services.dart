@@ -1,32 +1,24 @@
-
-
-
-
-import 'package:note_app/feature/home_visit/data/model/model_service_item.dart';
-
 class ModelServices {
+  int? serviceId;
+  int? cnt;
   String? title;
-  Map<int,List<ModelServiceItem>>? items=<int,List<ModelServiceItem>>{};
-  bool isEnable = false;
-  int id=0;
-  ModelServices({this.title, this.items});
-  ModelServices.fromModelServices(this.title,this.items, this.id )
-    {
-      isEnable = items![id]!=null ;
-    }
+  String? icon;
+
+  ModelServices({this.serviceId, this.cnt, this.title, this.icon});
 
   ModelServices.fromJson(Map<String, dynamic> json) {
+    serviceId = json['service_id'];
+    cnt = json['cnt'];
     title = json['title'];
-    List<dynamic> tmp= json['items'];
-    tmp.forEach((element) {
-      if(items![element['parent_id']]==null){
-        items![element['parent_id']] = [];
-      }
-      items![element['parent_id']]!.add(ModelServiceItem.fromJson(element));
-    });
-    isEnable = items!.isNotEmpty;
+    icon = json['icon'];
   }
 
-
-
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['service_id'] = this.serviceId;
+    data['cnt'] = this.cnt;
+    data['title'] = this.title;
+    data['icon'] = this.icon;
+    return data;
+  }
 }

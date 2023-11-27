@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:note_app/core/const/color.dart';
+import 'package:note_app/core/const/url.dart';
 import 'package:note_app/core/controller/AppController.dart';
 import 'package:note_app/core/loader/loader.dart';
 import 'package:note_app/feature/home_visit/controller/HomeVisitController.dart';
@@ -97,12 +98,12 @@ class VisitHome extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Image.asset(
-                                              "assets/images/home_visit.png",
+                                            Image.network(
+                                              BASEURLPROFILEIMAGE+HomeVisitController.to.listData[index].icon.toString(),
                                               width: Get.width * 0.3,
                                               height: Get.width * 0.3,
                                               color: HomeVisitController.to
-                                                      .listData[index].isEnable
+                                                      .listData[index].cnt==1
                                                   ? Colors.transparent
                                                   : Colors.grey,
                                             ),
@@ -122,22 +123,26 @@ class VisitHome extends StatelessWidget {
                                         ),
                                       ),
                                       onTap: () {
-                                        if (HomeVisitController
-                                            .to.listData[index]!.isEnable) {
-                                          HomeVisitController
-                                                  .to.selectModelServices =
-                                              HomeVisitController
-                                                  .to.listData[index]!;
-                                          HomeVisitController.to
-                                              .secondLoadData();
-                                        } else {
-                                          print(HomeVisitController
-                                              .to.listData[index]!.id);
-                                          AppController.to.idService =
-                                              HomeVisitController
-                                                  .to.listData[index]!.id;
-                                          Get.toNamed("/PatientsList");
-                                        }
+                                        AppController.to.idService =
+                                        HomeVisitController
+                                            .to.listData[index]!.serviceId!;
+                                        Get.toNamed("/PatientsList");
+
+                                        // if (HomeVisitController
+                                        //     .to.listData[index]!.isEnable) {
+                                        //   HomeVisitController
+                                        //           .to.selectModelServices =
+                                        //       HomeVisitController
+                                        //           .to.listData[index]!;
+                                        //   HomeVisitController.to
+                                        //       .secondLoadData();
+                                        // } else {
+                                        //
+                                        //   AppController.to.idService =
+                                        //       HomeVisitController
+                                        //           .to.listData[index]!.serviceId!;
+                                        //   Get.toNamed("/PatientsList");
+                                        // }
                                       },
                                     );
                                   },

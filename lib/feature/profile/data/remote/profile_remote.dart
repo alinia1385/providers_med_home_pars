@@ -14,16 +14,17 @@ import 'package:note_app/feature/profile/data/model/profile_form_data.dart';
 class ProfileRemote
 {
   Future<BaseListDaynamic> getProfile() async {
-    Response response = await App.client.get('profile');
-    print(response.data);
-    // return ModelProfile.fromJson(response.data);
-
+    Response response = await App.client.get('op/profile');
     return BaseListDaynamic.fromJson(response.data);
   }
 
 
-  Future<BaseListDaynamicStandard> setProfile(ModelProfileFormData value) async {
-    Response response = await App.client.post('profile',data: value.toFormData());
+  Future<BaseListDaynamicStandard> setProfile(ModelProfile value) async {
+
+
+    print(value.toJson());
+
+    Response response = await App.client.post('op/profile',data: value.toFormData());
     return BaseListDaynamicStandard.fromJson(response.data);
   }
 
@@ -33,7 +34,7 @@ class ProfileRemote
       'file': value,
       'filename':name
     });
-    Response response = await App.client.post('profile_image',data: formData);
+    Response response = await App.client.post('op/profile_image',data: formData);
     return BaseListDaynamic.fromJson(response.data);
   }
 

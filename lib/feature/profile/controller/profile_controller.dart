@@ -17,9 +17,9 @@ import 'package:note_app/feature/profile/screen/profile.dart';
 class ProfileController extends GetxController {
   static ProfileController get to => Get.find<ProfileController>();
 
-  // late VideoPlayerController videoPlayerController;
 
-  // RxBool isLoadVideo = false.obs;
+
+  //doctor  herapist
   final FocusNode fName = FocusNode();
   final FocusNode fFamily = FocusNode();
   final FocusNode fNationalCode = FocusNode();
@@ -27,8 +27,26 @@ class ProfileController extends GetxController {
 
   final tName = TextEditingController();
   final tFamily = TextEditingController();
-  final tNationalCode = TextEditingController();
+  final tMsn = TextEditingController();
+  final tSpecialty = TextEditingController();
   final tAge = TextEditingController();
+  final tMobile = TextEditingController();
+  final tAddress = TextEditingController();
+  final tPhone1 = TextEditingController();
+  final tPhone2 = TextEditingController();
+
+
+  //clinic
+  final tcName = TextEditingController();
+  final tcPhone1 = TextEditingController();
+  final tcPhone2 = TextEditingController();
+  final tcAddress = TextEditingController();
+  final tcOwnerName = TextEditingController();
+  final tcOwnerSurname = TextEditingController();
+  final tcOwnerMobile = TextEditingController();
+  final tcOwnerDesc = TextEditingController();
+
+
 
   bool gender = false;
 
@@ -43,12 +61,19 @@ class ProfileController extends GetxController {
 
    selectProfileImageSend()async
    {
+
      FilePickerResult? result = await FilePicker.platform.pickFiles( type: FileType.image,allowMultiple: false);
 
      if (result != null) {
+       stateSetProfile.value=false;
        final fileBytes = result.files.first.bytes;
-       ProfileRemoteDatasource.setProfileImage(base64.encode(fileBytes!),result.files.first.name);
+       final baseListDaynamic    =  await ProfileRemoteDatasource.setProfileImage(base64.encode(fileBytes!),result.files.first.name);
 
+
+       if(baseListDaynamic.success!)
+         {
+           imageAdress=baseListDaynamic.data!["file"].toString();
+         }
 
        // print(result.files.single.path!);
        // File file = File(result.files.single.path!);
@@ -56,6 +81,7 @@ class ProfileController extends GetxController {
      } else {
        // User canceled the picker
      }
+     stateSetProfile.value=true;
    }
 
 
@@ -87,47 +113,87 @@ class ProfileController extends GetxController {
     stateLoad.value = false;
     final baseListDaynamic  = await ProfileRemoteDatasource.getProfile();
     mProfile=ModelProfile.fromJson(baseListDaynamic.data!);
-    await getValue();
+    print(baseListDaynamic.data!);
+    print("---------");
+    print(mProfile.toJson());
+    print(AppController.to.type.contains("clinic"));
+    AppController.to.type.contains("clinic")?setValueClinic():setValueDoctorTherapist();
     stateLoad.value = true;
   }
 
 
-  RxBool stateSetProfile = false.obs;
+  RxBool stateSetProfile = true.obs;
   Future<BaseListDaynamicStandard> setProfile() async {
     stateSetProfile.value = false;
-    setValue();
-    final baseListDaynamic  = await ProfileRemoteDatasource.setProfile(setValue());
-
+    AppController.to.type.contains("clinic")?getValueClinic():getValueDoctorTherapist();
+    final baseListDaynamic  = await ProfileRemoteDatasource.setProfile(mProfile);
     stateSetProfile.value = true;
     return baseListDaynamic;
   }
 
-  getValue() {
+  setValueClinic() {
+    print("setValueClinic");
+    tcName.text = mProfile.name.toString();
+    tcPhone1.text = mProfile.phone1.toString();
+    tcPhone2.text = mProfile.phone2.toString();
+    tcOwnerName.text=mProfile.owner_name.toString();
+    tcOwnerSurname.text=mProfile.owner_surname.toString();
+    tcOwnerMobile.text=mProfile.owner_mobile.toString();
+    tcOwnerDesc.text=mProfile.description.toString();
+    tcAddress.text=mProfile.address.toString();
+    imageAdress=mProfile.image.toString();
+    print(imageAdress);
+  }
+
+  setValueDoctorTherapist() {
+    print("setValueDoctorTherapist");
     tName.text = mProfile.name.toString();
     tFamily.text = mProfile.surname.toString();
-    tAge.text = mProfile.age.toString();
-    tNationalCode.text = mProfile.nationalCode.toString();
-    imageAdress = mProfile.image.toString();
+    tMsn.text =mProfile.msn.toString();
+    tAddress.text=mProfile.address.toString();
+    tSpecialty.text=mProfile.specialty.toString();
+    tAge.text=mProfile.age.toString();
+    tMobile.text=mProfile.mobile.toString();
+    tPhone1.text=mProfile.phone1.toString();
+    tPhone2.text=mProfile.phone2.toString();
+    imageAdress=mProfile.image.toString();
+    print(imageAdress);
     if (mProfile.sex == 0) {
       man.value = true;
     } else {
       woman.value = true;
     }
+
+  }
+  getValueClinic() {
+    mProfile.name=tcName.text;
+
+    mProfile.phone1=tcPhone1.text;
+    mProfile.phone2=tcPhone2.text;
+    mProfile.owner_name= tcOwnerName.text;
+    mProfile.owner_surname=tcOwnerSurname.text;
+    mProfile.owner_mobile=tcOwnerMobile.text;
+    mProfile.description=tcOwnerDesc.text;
+    mProfile.address=tcAddress.text;
   }
 
-  ModelProfileFormData setValue() {
-    ModelProfileFormData mProfile=ModelProfileFormData();
+  getValueDoctorTherapist() {
+
     mProfile.name=tName.text;
-    mProfile.surname=tFamily.text;
-    mProfile.age=tAge.text;
-    mProfile.nationalCode=tNationalCode.text;
-    if(man.value)
-      {
-        mProfile.sex=0;
-      }else
-        {
-          mProfile.sex=1;
-        }
-    return mProfile;
+    mProfile.surname=tFamily.text ;
+    mProfile.msn=int.parse(tMsn.text);
+    mProfile.address=tAddress.text;
+    mProfile.specialty=tSpecialty.text;
+    mProfile.age=int.parse(tAge.text);
+    mProfile.mobile=tMobile.text;
+    mProfile.phone1=tPhone1.text;
+    mProfile.phone2=tPhone2.text;
+
+    if (mProfile.sex == 0) {
+      man.value = true;
+    } else {
+      woman.value = true;
+    }
+
   }
 }

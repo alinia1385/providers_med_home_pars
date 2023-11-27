@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 class ModelLoginFormDataSetCode {
   String? mobile;
   String? code;
+  String? type;
+
 
 
   ModelLoginFormDataSetCode({this.mobile,this.code});
@@ -10,6 +12,7 @@ class ModelLoginFormDataSetCode {
   ModelLoginFormDataSetCode.fromJson(Map<String, dynamic> json) {
     mobile = json['mobile'];
     code = json['code'];
+    type = json['type'];
 
   }
 
@@ -17,6 +20,7 @@ class ModelLoginFormDataSetCode {
     final Map<String, dynamic> data =  new Map<String, dynamic>();
     data['mobile'] = mobile;
     data['code'] = code;
+    data['type'] = type;
 
     return data;
   }
@@ -25,6 +29,7 @@ class ModelLoginFormDataSetCode {
     FormData data = FormData.fromMap({
       "mobile": mobile,
       "code": code,
+      "type": type,
     });
     return data;
   }

@@ -9,6 +9,7 @@ class AppController extends GetxController with StateMixin
   RxBool isLandscape_=false.obs;
   String lat ="";
   String lng ="";
+  String type="";
 
 
   late final prefs;

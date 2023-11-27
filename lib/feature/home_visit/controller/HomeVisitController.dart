@@ -39,8 +39,7 @@ class HomeVisitController extends GetxController {
 
 
   final  HomeVisitRemote homeVisiRemoteDatasource =  HomeVisitRemote();
-  bool Level=false;
-  late Map<String,dynamic> dataValueMaster;
+  List<dynamic> dataValueMaster=[];
   RxBool stateLoadData=false.obs;
   Future<BaseListDaynamic> getServicesList()async
   {
@@ -53,44 +52,13 @@ class HomeVisitController extends GetxController {
     return baseListDaynamic;
   }
 
-  List<ModelServices> listMainData=[];
   List<ModelServices> listData=[];
   loadData()
   {
-    stateLoadData.value=false;
-    listMainData.clear();
     listData.clear();
-    Map<String,dynamic> services=dataValueMaster;
-    List<String> key=[];
-    services.forEach((key_, value) {
-      key.add(key_);
-    });
-
-    for (var element in key) {
-      ModelServices mServices=ModelServices.fromJson(services[element]);
-      listMainData.add(mServices);
+    for (var element in dataValueMaster) {
+      listData.add(ModelServices.fromJson(element) );
     }
 
-    listData.addAll(listMainData);
-    Level=false;
-    stateLoadData.value=true;
   }
-  late ModelServices selectModelServices;
-
-  secondLoadData()
-  {
-    Level=true;
-    listData.clear();
-    stateLoadData.value=false;
-    selectModelServices.items![selectModelServices.id]!.forEach((element) {
-      // ModelServices mServices=ModelServices.fromJson(element);
-      // element.
-       listData.add( ModelServices.fromModelServices(element.title,selectModelServices.items,element.id!) );
-      //print(selectModelServices.items!.values.toString());
-    });
-    stateLoadData.value=true;
-  }
-
-
-
 }

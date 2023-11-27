@@ -39,43 +39,149 @@ class Login extends StatelessWidget {
                     )),
                 Expanded(
                     flex: 3,
-                    child: Column(
-                      children: [
-                        Container(
-                          height: Get.height * 0.15,
-                          margin: const EdgeInsets.symmetric(horizontal: 50),
-                          child: TextFormField(
-                            maxLength: 11,
-                            controller: LoginController.to.mobile,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            style: const TextStyle(color: Colors.black),
-                            textAlign: TextAlign.right,
-                            decoration: InputDecoration(
-                                counterText: "",
-                                filled: true,
-                                fillColor: Colors.white,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                  borderSide: const BorderSide(
-                                    width: 1,
-                                    color: ColorConst.primaryDark,
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: Get.width * 0.1),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: Get.height * 0.15,
+                            child: TextFormField(
+                              maxLength: 11,
+                              controller: LoginController.to.mobile,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              style: const TextStyle(color: Colors.black),
+                              textAlign: TextAlign.right,
+                              decoration: InputDecoration(
+                                  counterText: "",
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    borderSide: const BorderSide(
+                                      width: 1,
+                                      color: ColorConst.primaryDark,
+                                    ),
                                   ),
-                                ),
-                                hintText: ("شماره همراه"),
-                                hintStyle: const TextStyle(
+                                  hintText: ("شماره همراه"),
+                                  hintStyle: const TextStyle(
+                                      fontSize: 16,
+                                      color: ColorConst.primaryDark,
+                                      fontFamily: "IRANSANCE"),
+                                  suffixIcon: const Icon(
+                                    Icons.phone_android,
+                                    color: ColorConst.primaryDark,
+                                  )),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const Text(
+                                "پزشک",
+                                style: TextStyle(
                                     fontSize: 16,
                                     color: ColorConst.primaryDark,
                                     fontFamily: "IRANSANCE"),
-                                suffixIcon: const Icon(
-                                  Icons.phone_android,
-                                  color: ColorConst.primaryDark,
-                                )),
+                              ),
+                              Obx(() => Checkbox(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    value: LoginController.to.isDoctor.value,
+                                    onChanged: (value) {
+                                      if (value!) {
+                                        LoginController.to.isDoctor.value =
+                                            value!;
+                                      }
+                                      LoginController.to.isClinic.value = false;
+                                      LoginController.to.isPhysiotherapy.value =
+                                          false;
+                                    },
+                                  )),
+                            ],
                           ),
-                        ),
-                      ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const Text(
+                                "کلینیک",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: ColorConst.primaryDark,
+                                    fontFamily: "IRANSANCE"),
+                              ),
+                              Obx(() => Checkbox(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    value: LoginController.to.isClinic.value,
+                                    onChanged: (value) {
+                                      if (value!) {
+                                        LoginController.to.isClinic.value =
+                                            value!;
+                                      }
+
+                                      LoginController.to.isDoctor.value =
+                                          false!;
+
+                                      LoginController.to.isPhysiotherapy.value =
+                                          false;
+                                      // if (AccommodationController.to.isCheckman.value !=
+                                      //     value!) {
+                                      //   AccommodationController.to.isCheckman.value = value;
+                                      //   AccommodationController.to.isCheckwoman.value =
+                                      //   !value;
+                                      // }
+
+                                      // _formValidationBloc1.add(FormValidationEvent.checkBox(value!));
+                                    },
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const Text(
+                                "فیزیوتراپ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: ColorConst.primaryDark,
+                                    fontFamily: "IRANSANCE"),
+                              ),
+                              Obx(() => Checkbox(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    value: LoginController
+                                        .to.isPhysiotherapy.value,
+                                    onChanged: (value) {
+                                      if (value!) {
+                                        LoginController
+                                            .to.isPhysiotherapy.value = value!;
+                                      }
+                                      LoginController.to.isClinic.value =
+                                          false!;
+                                      LoginController.to.isDoctor.value =
+                                          false!;
+
+                                      // if (AccommodationController.to.isCheckman.value !=
+                                      //     value!) {
+                                      //   AccommodationController.to.isCheckman.value = value;
+                                      //   AccommodationController.to.isCheckwoman.value =
+                                      //   !value;
+                                      // }
+
+                                      // _formValidationBloc1.add(FormValidationEvent.checkBox(value!));
+                                    },
+                                  )),
+                            ],
+                          ),
+                        ],
+                      ),
                     )),
                 Expanded(
                     flex: 2,

@@ -1,12 +1,17 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:note_app/core/const/color.dart';
 import 'package:note_app/core/const/enum.dart';
 import 'package:note_app/core/const/url.dart';
+import 'package:note_app/core/controller/AppController.dart';
 import 'package:note_app/core/widget/toast/toast.dart';
 import 'package:note_app/core/widget/toast/toast_provider.dart';
 import 'package:note_app/feature/profile/controller/profile_controller.dart';
+import 'package:note_app/feature/profile/screen/wigets/clinic.dart';
+import 'package:note_app/feature/profile/screen/wigets/doctor_therapist.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -23,268 +28,61 @@ class Profile extends StatelessWidget {
             Expanded(
                 flex: 2,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        ProfileController.to.selectProfileImageSend();
-                      },
-                      child: Container(
-                          margin: const EdgeInsets.only(left: 140),
+                    Expanded(child: Container()),
+                    Expanded(
+                      flex: 2,
+                      child: GestureDetector(
+                        onTap: () {
+                          ProfileController.to.selectProfileImageSend();
+                        },
+                        child:Obx(()=>   ProfileController.to.stateSetProfile.value ? Container(
+
                           alignment: Alignment.center,
                           width: 125,
                           height: Get.height,
                           child:
                           ProfileController.to.imageAdress.isEmpty
-                          ?
+                              ?
                           const CircleAvatar(
                             radius: 100,
                             backgroundColor: ColorConst.primaryDark,
                             backgroundImage: AssetImage(
                                 "assets/images/person_add_icon.png"),
                           )
-                        : CircleAvatar(
+                              : CircleAvatar(
                             radius: 100,
                             backgroundImage: NetworkImage(BASEURLPROFILEIMAGE +
                                 ProfileController.to.imageAdress),
                           ),
+                        ):Center(child: Container(child: const Center(child: CircularProgressIndicator(),),))),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        // ProfileController.to.setProfile().then((value) {
-                        //   FxToast.showToast(
-                        //     context: context,
-                        //     toast: ToastWithoutColor.success(
-                        //       message: value.message!,
-                        //       icon: Icons.info_rounded,
-                        //     ),
-                        //     position: ToastPosition.topRight,
-                        //   );
-                        //
-                        // });
-                        Get.toNamed("/VisitHome");
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 15, left: 50),
-                        alignment: Alignment.topLeft,
-                        width: 25,
-                        height: Get.height,
-                        child: const Image(
-                            image: AssetImage("assets/images/back.png")),
+                    Expanded(
+                      flex: 1,
+                      child: GestureDetector(
+                        onTap: () {
+
+                          // Get.toNamed("/VisitHome");
+                        },
+                        child: Container(
+
+                          alignment: Alignment.topLeft,
+                          width: Get.width * 0.11,
+                          height: Get.height,
+                          child: const Image(
+                              image: AssetImage("assets/images/back.png")),
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 )),
-            Expanded(
-              flex: 6,
-              child: Column(
-                children: [
-                  Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      margin: const EdgeInsets.symmetric(horizontal: 50),
-                      child: TextFormField(
-                        // controller: ProfileController.to.tName,
-                        maxLength: 20,
-                        keyboardType: TextInputType.text,
-                        style: const TextStyle(color: Colors.black),
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                          counterText: "",
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(
-                                width: 1, color: ColorConst.primaryDark),
-                          ),
-                          hintText: (":نام"),
-                          hintStyle: const TextStyle(
-                              fontSize: 14,
-                              color: ColorConst.primaryDark,
-                              fontFamily: "IRANSANCE"),
-                        ),
-                      )),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    margin: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextFormField(
-                      // controller: ProfileController.to.tFamily,
-                      maxLength: 20,
-                      keyboardType: TextInputType.text,
-                      style: const TextStyle(color: Colors.black),
-                      textAlign: TextAlign.right,
-                      decoration: InputDecoration(
-                        counterText: "",
-                        filled: true,
-                        fillColor: Colors.white,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                              width: 1, color: ColorConst.primaryDark),
-                        ),
-                        hintText: (":نام خانوادگی"),
-                        hintStyle: const TextStyle(
-                            fontSize: 14,
-                            color: ColorConst.primaryDark,
-                            fontFamily: "IRANSANCE"),
-                      ),
-                    ),
-                  ),
-                  Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      margin: const EdgeInsets.symmetric(horizontal: 50),
-                      child: TextFormField(
-                        // controller: ProfileController.to.tNationalCode,
-                        maxLength: 10,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        style: const TextStyle(color: Colors.black),
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                          counterText: "",
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(
-                                width: 1, color: ColorConst.primaryDark),
-                          ),
-                          hintText: (":کدملی"),
-                          hintStyle: const TextStyle(
-                              fontSize: 14,
-                              color: ColorConst.primaryDark,
-                              fontFamily: "IRANSANCE"),
-                        ),
-                      )),
-                  Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      margin: const EdgeInsets.symmetric(horizontal: 50),
-                      child: TextFormField(
-                        // controller: ProfileController.to.tNationalCode,
-                        maxLength: 50,
-                        style: const TextStyle(color: Colors.black),
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                          counterText: "",
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(
-                                width: 1, color: ColorConst.primaryDark),
-                          ),
-                          hintText: (":تخصص"),
-                          hintStyle: const TextStyle(
-                              fontSize: 14,
-                              color: ColorConst.primaryDark,
-                              fontFamily: "IRANSANCE"),
-                        ),
-                      )),
-                  Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      margin: const EdgeInsets.symmetric(horizontal: 50),
-                      child: TextFormField(
-                        // controller: ProfileController.to.tAge,
-                        maxLength: 2,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        style: const TextStyle(color: Colors.black),
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                          counterText: "",
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(
-                                width: 1, color: ColorConst.primaryDark),
-                          ),
-                          hintText: (":سن"),
-                          hintStyle: const TextStyle(
-                              fontSize: 14,
-                              color: ColorConst.primaryDark,
-                              fontFamily: "IRANSANCE"),
-                        ),
-                      ))
-                ],
-              ),
+             Expanded(
+              flex: 7,
+              child:AppController.to.type.contains("clinic")?  const Clinic() : const DoctorTherapist(),
             ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(left: 50),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            activeColor: ColorConst.primaryDark,
-                            onChanged: (value) {
-                              // ProfileController.to.woman.value = true;
-                              // if (value!) {
-                              //   ProfileController.to.man.value = false;
-                              // }
-                            },
-                            value: isBlank,
-                            // ProfileController.to.woman.value,
-                            side: const BorderSide(
-                              color: ColorConst.primaryDark,
-                              width: 1.5,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          const Text("خانم",
-                              style: TextStyle(
-                                  fontFamily: "IRANSANCE", fontSize: 14))
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              activeColor: ColorConst.primaryDark,
-                              onChanged: (value) {
-                                // ProfileController.to.man.value = true;
-                                // if (value!) {
-                                //   ProfileController.to.woman.value = false;
-                                // }
-                              },
-                              value: isBlank,
-                              // ProfileController.to.man.value,
-                              side: const BorderSide(
-                                color: ColorConst.primaryDark,
-                                width: 1.5,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                            ),
-                            const Text(
-                              "آقا",
-                              style: TextStyle(
-                                  fontFamily: "IRANSANCE", fontSize: 14),
-                            )
-                          ],
-                        )),
-                    const Expanded(
-                      child: Text(":جنسیت",
-                          style: TextStyle(
-                              fontFamily: "IRANSANCE", fontSize: 16)),
-                    )
-                  ],
-                ),
-              ),
-            ),
+
             Expanded(
                 flex: 2,
                 child: Row(

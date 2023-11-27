@@ -21,40 +21,56 @@ class ModelProfile {
   String? targets;
   int? status;
   String? bloodImage;
-  String? wallet;
+  int? wallet;
   String? followDay;
   String? followTime;
   String? createdAt;
   String? updatedAt;
   String? deletedAt;
+  String? phone1;
+  String? phone2;
+  String? owner_name;
+  String? owner_surname;
+  String? owner_mobile;
+  int? msn;
+  String? specialty;
 
-  ModelProfile(
-      {this.id,
-      this.image,
-      this.name,
-      this.surname,
-      this.father,
-      this.nationalCode,
-      this.age,
-      this.sex,
-      this.cityId,
-      this.nationality,
-      this.education,
-      this.email,
-      this.mobile,
-      this.phone,
-      this.address,
-      this.surveyId,
-      this.description,
-      this.targets,
-      this.status,
-      this.bloodImage,
-      this.wallet,
-      this.followDay,
-      this.followTime,
-      this.createdAt,
-      this.updatedAt,
-      this.deletedAt});
+
+  ModelProfile({
+    this.id,
+    this.image,
+    this.name,
+    this.surname,
+    this.father,
+    this.nationalCode,
+    this.age,
+    this.sex,
+    this.cityId,
+    this.nationality,
+    this.education,
+    this.email,
+    this.mobile,
+    this.phone,
+    this.phone1,
+    this.phone2,
+    this.address,
+    this.surveyId,
+    this.description,
+    this.targets,
+    this.status,
+    this.bloodImage,
+    this.wallet,
+    this.followDay,
+    this.followTime,
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
+    this.owner_name,
+    this.owner_surname,
+    this.owner_mobile,
+    this.msn,
+    this.specialty,
+  });
 
   ModelProfile.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -83,67 +99,92 @@ class ModelProfile {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];
+    phone1 = json['phone1'];
+    phone2 = json['phone2'];
+    owner_name = json['owner_name'];
+    owner_surname = json['owner_surname'];
+    owner_mobile = json['owner_mobile'];
+    msn = json['msn'];
+    specialty = json['specialty'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['image'] = this.image;
-    data['name'] = this.name;
-    data['surname'] = this.surname;
-    data['father'] = this.father;
-    data['national_code'] = this.nationalCode;
-    data['age'] = this.age;
-    data['sex'] = this.sex;
-    data['city_id'] = this.cityId;
-    data['nationality'] = this.nationality;
-    data['education'] = this.education;
-    data['email'] = this.email;
-    data['mobile'] = this.mobile;
-    data['phone'] = this.phone;
-    data['address'] = this.address;
-    data['survey_id'] = this.surveyId;
-    data['description'] = this.description;
-    data['targets'] = this.targets;
-    data['status'] = this.status;
-    data['blood_image'] = this.bloodImage;
-    data['wallet'] = this.wallet;
-    data['follow_day'] = this.followDay;
-    data['follow_time'] = this.followTime;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['deleted_at'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['image'] = image;
+    data['name'] = name;
+    data['surname'] = surname;
+    data['father'] = father;
+    data['national_code'] = nationalCode;
+    data['age'] = age;
+    data['sex'] = sex;
+    data['city_id'] = cityId;
+    data['nationality'] = nationality;
+    data['education'] = education;
+    data['email'] = email;
+    data['mobile'] = mobile;
+    data['phone'] = phone;
+    data['address'] = address;
+    data['survey_id'] = surveyId;
+    data['description'] = description;
+    data['targets'] = targets;
+    data['status'] = status;
+    data['blood_image'] = bloodImage;
+    data['wallet'] = wallet;
+    data['follow_day'] = followDay;
+    data['follow_time'] = followTime;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['deleted_at'] = deletedAt;
+
+    data['phone1'] = phone1;
+    data['phone2'] = phone2;
+
+    data['owner_name'] = owner_name;
+    data['owner_surname'] = owner_surname;
+    data['owner_mobile'] = owner_mobile;
+    data['msn'] = msn;
+    data['specialty'] = specialty;
+
     return data;
   }
 
-  FormData getFormData() {
+  FormData toFormData() {
     FormData data = FormData.fromMap({
-    'id':id,
-    'image':image,
-    'name':name,
-    'surname':surname,
-    'father':father,
-    'national_code':nationalCode,
-    'age':age,
-    'sex':sex,
-    'city_id':cityId,
-    'nationality':nationality,
-    'education':education,
-    'email':email,
-    'mobile':mobile,
-    'phone':phone,
-    'address':address,
-    'survey_id':surveyId,
-    'description':description,
-    'targets':targets,
-    'status':status,
-    'blood_image':bloodImage,
-    'wallet':wallet,
-    'follow_day':followDay,
-    'follow_time':followTime,
-    'created_at':createdAt,
-    'updated_at':updatedAt,
-    'deleted_at':deletedAt,
-  });
-    return data;}
+      'id': id,
+      'image': image,
+      'name': name,
+      'surname': surname,
+      'father': father,
+      'national_code': nationalCode,
+      'age': age,
+      'sex': sex,
+      'city_id': cityId,
+      'nationality': nationality,
+      'education': education,
+      'email': email,
+      'mobile': mobile,
+      'phone': phone,
+      'address': address,
+      'survey_id': surveyId,
+      'description': description,
+      'targets': targets,
+      'status': status,
+      'blood_image': bloodImage,
+      'wallet': wallet,
+      'follow_day': followDay,
+      'follow_time': followTime,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+      'deleted_at': deletedAt,
+      'phone1': phone1,
+      'phone2': phone2,
+      'owner_name': owner_name,
+      'owner_surname': owner_surname,
+      'owner_mobile': owner_mobile,
+      'msn': msn,
+      'specialty': specialty,
+    });
+    return data;
+  }
 }

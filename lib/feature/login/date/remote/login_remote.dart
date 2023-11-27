@@ -9,14 +9,13 @@ import 'package:note_app/feature/login/date/model/model_login_form_send_code_dat
 
 class LoginRemote
 {
-  Future<BaseListDaynamicStandard> getUser(String mobile) async {
-    ModelLoginFormData formData= ModelLoginFormData();
-    formData.mobile=mobile;
-    Response response = await App.client.post('login', data:formData.toFormData());
+  Future<BaseListDaynamicStandard> getUser(ModelLoginFormData formData) async {
+
+    Response response = await App.client.post('op/login', data:formData.toFormData());
     return BaseListDaynamicStandard.fromJson(response.data);
   }
   Future<BaseListDaynamic> SetCode(ModelLoginFormDataSetCode values) async {
-    Response response = await App.client.post('code-verify', data:values.toFormData());
+    Response response = await App.client.post('op/code-verify', data:values.toFormData());
     return BaseListDaynamic.fromJson(response.data);
   }
 }
