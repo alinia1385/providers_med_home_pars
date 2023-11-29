@@ -136,7 +136,7 @@ class Clinic extends StatelessWidget
                   borderSide: const BorderSide(
                       width: 1, color: ColorConst.primaryDark),
                 ),
-                hintText: ("نام کلینیک"),
+                hintText: ("نام مدیر کلینیک"),
                 hintStyle: const TextStyle(
                     fontSize: 14,
                     color: ColorConst.primaryDark,
@@ -161,7 +161,7 @@ class Clinic extends StatelessWidget
                   borderSide: const BorderSide(
                       width: 1, color: ColorConst.primaryDark),
                 ),
-                hintText: ("نام کلینیک"),
+                hintText: ("نام خانوادگی مدیر کلینیک"),
                 hintStyle: const TextStyle(
                     fontSize: 14,
                     color: ColorConst.primaryDark,
@@ -173,10 +173,12 @@ class Clinic extends StatelessWidget
             margin: const EdgeInsets.symmetric(horizontal: 50),
             child: TextFormField(
               controller: ProfileController.to.tcOwnerMobile,
+              readOnly: true,
               maxLength: 11,
               keyboardType: TextInputType.number,
               inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.digitsOnly
+
               ],
               style: const TextStyle(color: Colors.black),
               textAlign: TextAlign.right,
@@ -189,7 +191,7 @@ class Clinic extends StatelessWidget
                   borderSide: const BorderSide(
                       width: 1, color: ColorConst.primaryDark),
                 ),
-                hintText: ("موبایل"),
+                hintText: ("موبایل مدیر"),
                 hintStyle: const TextStyle(
                     fontSize: 14,
                     color: ColorConst.primaryDark,
@@ -214,7 +216,7 @@ class Clinic extends StatelessWidget
                   borderSide: const BorderSide(
                       width: 1, color: ColorConst.primaryDark),
                 ),
-                hintText: ("نام کلینیک"),
+                hintText: ("توضیحات"),
                 hintStyle: const TextStyle(
                     fontSize: 14,
                     color: ColorConst.primaryDark,

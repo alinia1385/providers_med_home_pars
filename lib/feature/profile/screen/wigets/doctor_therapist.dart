@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:note_app/core/const/color.dart';
 import 'package:note_app/feature/profile/controller/profile_controller.dart';
 
@@ -147,6 +148,7 @@ class DoctorTherapist extends StatelessWidget
             margin: const EdgeInsets.symmetric(horizontal: 50),
             child: TextFormField(
               controller: ProfileController.to.tMobile,
+              readOnly: true,
               maxLength: 11,
               keyboardType: TextInputType.number,
               inputFormatters: <TextInputFormatter>[
@@ -261,13 +263,17 @@ class DoctorTherapist extends StatelessWidget
               Expanded(
                 child: Row(
                   children: [
-                    Checkbox(
+                   Obx(()=> Checkbox(
                       activeColor: ColorConst.primaryDark,
                       onChanged: (value) {
 
-                        ProfileController.to.woman.value = true;
 
-                        ProfileController.to.man.value = false;
+                        if(value!)
+                          {
+                            ProfileController.to.woman.value = value!;
+                          }
+
+                         ProfileController.to.man.value = false;
 
                       },
                       value: ProfileController.to.woman.value,
@@ -279,7 +285,7 @@ class DoctorTherapist extends StatelessWidget
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),
-                    ),
+                    )),
                     const Text("خانم",
                         style: TextStyle(
                             fontFamily: "IRANSANCE", fontSize: 14))
@@ -289,15 +295,19 @@ class DoctorTherapist extends StatelessWidget
               Expanded(
                   child: Row(
                     children: [
-                      Checkbox(
+                     Obx(()=> Checkbox(
                         activeColor: ColorConst.primaryDark,
+                        value: ProfileController.to.man.value,
                         onChanged: (value) {
-                          ProfileController.to.man.value = true;
+
+
                           if (value!) {
-                            ProfileController.to.woman.value = false;
+                            ProfileController.to.man.value = value!;
+
                           }
+                          ProfileController.to.woman.value = false;
                         },
-                        value:  ProfileController.to.man.value,
+
                         // ProfileController.to.man.value,
                         side: const BorderSide(
                           color: ColorConst.primaryDark,
@@ -306,7 +316,7 @@ class DoctorTherapist extends StatelessWidget
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4),
                         ),
-                      ),
+                      )),
                       const Text(
                         "آقا",
                         style: TextStyle(

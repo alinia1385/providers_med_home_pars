@@ -14,8 +14,9 @@ class Api {
         baseUrl: BASEURL ,
         method: "POST",
         // baseUrl: 'http://172.20.1.191:7000',
-        connectTimeout: const Duration(seconds: 15),
-        sendTimeout: const Duration(seconds: 15),
+        connectTimeout: const Duration(seconds: 30),
+        sendTimeout: const Duration(seconds: 30),
+        receiveDataWhenStatusError: true,
         // headers: {
         //   'apiversion': 30,
         //   'appversion': 1,

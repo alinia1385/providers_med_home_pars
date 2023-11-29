@@ -9,17 +9,18 @@ import 'package:note_app/feature/login/date/model/model_login_form_data.dart';
 import 'package:note_app/feature/login/date/model/model_login_form_send_code_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ListVisitRemote
+class PatientsListRemote
 {
 
-  Future<BaseListDaynamic> getListVisit() async {
+  Future<BaseListDaynamic> getPatientsList() async {
    final prefs = await SharedPreferences.getInstance();
    String? token= await prefs.getString('token');
     App.client.options.headers["Authorization"] = "Bearer $token";
     App.client.options.headers["Accept"] = "application/json";
-    Response response = await App.client.get('services/used');
-    print(response.data);
+    Response response = await App.client.get('op/services/requests',queryParameters:{"service_id":AppController.to.idService});
     return BaseListDaynamic.fromJson(response.data);
   }
+
+
 
 }

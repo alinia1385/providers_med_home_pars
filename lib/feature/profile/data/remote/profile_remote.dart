@@ -20,10 +20,6 @@ class ProfileRemote
 
 
   Future<BaseListDaynamicStandard> setProfile(ModelProfile value) async {
-
-
-    print(value.toJson());
-
     Response response = await App.client.post('op/profile',data: value.toFormData());
     return BaseListDaynamicStandard.fromJson(response.data);
   }

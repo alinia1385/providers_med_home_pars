@@ -59,6 +59,5 @@ class HomeVisitController extends GetxController {
     for (var element in dataValueMaster) {
       listData.add(ModelServices.fromJson(element) );
     }
-
   }
 }

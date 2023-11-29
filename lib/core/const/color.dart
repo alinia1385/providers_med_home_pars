@@ -12,6 +12,7 @@ TextStyle SizeButton = const TextStyle(
     fontSize: 18,
   );
 
+
 class ColorConst {
   static const primaryColor = Color(0xFF685BFF);
   static const canvasColor = Color(0xFF2E2E48);

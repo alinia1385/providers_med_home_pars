@@ -4,10 +4,35 @@ import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:note_app/core/model/base_list_daynamic.dart';
+import 'package:note_app/feature/patients_location/data/remote/map_remote.dart';
 
 class MapControllerC extends GetxController {
   static MapControllerC get to => Get.find<MapControllerC>();
+  final MapRemote MapRemoteDatasource = MapRemote();
 
+  dynamic argumentData = Get.arguments;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    String tmpData=argumentData[0]['lat-long'].toString();
+    if(tmpData.length>5)
+      {
+        var data=tmpData.split(",");
+        latitude.value=double.parse(data[0].toString().trim());
+        longitude.value=double.parse(data[1].toString().trim());
+      }
+    status= argumentData[1]['status'].toString();
+    request_id=argumentData[2]['request_id'].toString();
+    getState(status);
+
+
+
+  }
+  String status="";
+  String request_id="";
   var latitude = 36.287241.obs;
   var longitude = 59.616426.obs;
   List<Marker> tmpMarker = [];
@@ -35,5 +60,32 @@ class MapControllerC extends GetxController {
     } else {
 
     }
+  }
+
+
+  RxString rxState="".obs;
+  int indexState=0;
+  getState(String data)
+  {
+
+    switch(data)
+    {
+      case "new":rxState.value="درخواست خدمت";indexState=0 ;break;
+      case "accept":rxState.value="شروع خدمت"; indexState=1;break;
+      case "arrived":rxState.value="در مسیر خدمت";indexState=2; break;
+      case "finish":rxState.value="اتمام خدمت"; indexState=3;break;
+      case "cancel":rxState.value="انصراف از خدمت";indexState=4; break;
+    }
+
+  }
+
+  RxBool changeStateValue = false.obs;
+  List<String> listState=["new","accept","arrive","finish","cancel"];
+  Future<BaseListDaynamic> changeState() async {
+
+    changeStateValue.value = false;
+    final baseListDaynamic = await MapRemoteDatasource.changeState(listState[indexState+1], request_id);
+    changeStateValue.value = true;
+    return baseListDaynamic;
   }
 }

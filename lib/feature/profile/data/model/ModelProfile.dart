@@ -150,6 +150,7 @@ class ModelProfile {
   }
 
   FormData toFormData() {
+
     FormData data = FormData.fromMap({
       'id': id,
       'image': image,
@@ -163,7 +164,6 @@ class ModelProfile {
       'nationality': nationality,
       'education': education,
       'email': email,
-      'mobile': mobile,
       'phone': phone,
       'address': address,
       'survey_id': surveyId,
@@ -184,7 +184,10 @@ class ModelProfile {
       'owner_mobile': owner_mobile,
       'msn': msn,
       'specialty': specialty,
+      'phone1':phone1,
+      'phone2':phone2,
     });
+    print(data);
     return data;
   }
 }

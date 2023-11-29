@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:note_app/core/const/color.dart';
+import 'package:note_app/core/const/enum.dart';
+import 'package:note_app/core/const/url.dart';
 import 'package:note_app/core/controller/AppController.dart';
 import 'package:note_app/core/loader/loader.dart';
+import 'package:note_app/core/widget/toast/toast.dart';
+import 'package:note_app/core/widget/toast/toast_provider.dart';
 import 'package:note_app/feature/patients_list/controller/patients_list_controller.dart';
 
 class PatientsList extends StatelessWidget {
@@ -38,7 +42,8 @@ class PatientsList extends StatelessWidget {
                                   Get.back();
                                 },
                                 child: Container(
-                                  margin: const EdgeInsets.only(right: 25,top: 10),
+                                  margin:
+                                      const EdgeInsets.only(right: 25, top: 10),
                                   alignment: Alignment.centerRight,
                                   width: Get.width * 0.11,
                                   height: Get.height,
@@ -87,100 +92,163 @@ class PatientsList extends StatelessWidget {
                           ),
                           Divider(
                             color: Colors.transparent,
-                            height: Get.height * 0.05,
+                            height: Get.height * 0.02,
                           ),
                           Expanded(
-                            child: Obx(() => PatientsListController
-                                    .to.stateLoadData.value
-                                ? ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount:
-                                    PatientsListController.to.listVisit.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Column(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () async{
-                                              await Get.toNamed("/PatientsRequest");
-                                            },
-                                            child: Container(
-                                              width: Get.width * 0.9,
-                                              height: Get.height * 0.07,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.circular(
-                                                          Get.width * 0.04)),
-                                                  color: PatientsListController.to.ItemStatus.value
-                                                      ? Brwon
-                                                      : ColorConst.primaryDark),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                      child: Text(
-                                                        PatientsListController
-                                                        .to
-                                                        .listVisit[index]
-                                                        .createdAt
-                                                        .toString(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontFamily: "IRANSANCE",
-                                                        fontSize:
-                                                            Get.width * 0.04),
-                                                  )),
-                                                  Expanded(
-                                                      child: Text(
-                                                        PatientsListController
-                                                        .to
-                                                        .listVisit[index]
-                                                        .personType
-                                                        .toString(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontFamily: "IRANSANCE",
-                                                        fontSize:
-                                                            Get.width * 0.04),
-                                                  )),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          const Divider(
-                                            color: Colors.transparent,
-                                          )
-                                        ],
-                                      );
-                                    })
-                                : Center(
-                                child: SizedBox(
-                                    width: Get.width * 0.3,
-                                    height: Get.width * 0.3,
-                                    child: FxLoader.cubeGridLoader(
-                                        color: Colors.black12,
-                                        size: Get.width * 0.15)))),
+                            child:
+                                Obx(
+                                    () =>
+                                        PatientsListController
+                                                .to.stateLoadData.value
+                                            ? ListView.builder(
+                                                shrinkWrap: true,
+                                                itemCount:
+                                                    PatientsListController
+                                                        .to.listPersonal.length,
+                                                itemBuilder:
+                                                    (BuildContext context,
+                                                        int index) {
+                                                  return Column(
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () async {
+                                                          await Get.toNamed(
+                                                              "/PatientsRequest");
+                                                        },
+                                                        child: Container(
+                                                          width:
+                                                              Get.width * 0.95,
+                                                          height: Get.height *
+                                                              0.157,
+
+                                                          // decoration: BoxDecoration(
+                                                          //     borderRadius: BorderRadius
+                                                          //         .all(Radius.circular(
+                                                          //             Get.width * 0.04)),
+                                                          //     color: PatientsListController
+                                                          //             .to.ItemStatus.value
+                                                          //         ? Brwon
+                                                          //         : ColorConst.primaryDark.withOpacity(opacity)),
+
+                                                          child: Stack(
+                                                            children: [
+                                                              Row(
+                                                                children: [
+                                                                  Expanded(
+                                                                      flex: 4,
+                                                                      child:
+                                                                          GestureDetector(
+                                                                            onTap: (){
+                                                                              AppController.to.stateRequest=PatientsListController.to.listPersonal[index].status.toString();
+
+                                                                              Get.toNamed("/patients_location",arguments: [
+                                                                                {"lat-long":PatientsListController.to.listPersonal[index].latlong.toString()},
+                                                                                {"status":PatientsListController.to.listPersonal[index].status.toString()},
+                                                                                {"request_id":PatientsListController.to.listPersonal[index].id.toString()},
+                                                                              ]);
+
+
+                                                                            },
+                                                                            child: Container(
+                                                                              padding: EdgeInsets.only(right: Get.width*0.11 ),
+                                                                              alignment: Alignment.centerRight,
+                                                                        decoration:
+                                                                              BoxDecoration(
+                                                                            color: PatientsListController.to.ItemStatus.value
+                                                                                ? Brwon
+                                                                                : ColorConst.primaryDark,
+                                                                            borderRadius:
+                                                                                BorderRadius.all(Radius.circular(Get.width * 0.01)),
+                                                                        ),
+                                                                        margin: EdgeInsets.symmetric(
+                                                                              vertical:
+                                                                                  Get.height * 0.02),
+                                                                        child:
+                                                                              Text(
+                                                                            "${PatientsListController.to.listPersonal[index].name}${PatientsListController.to.listPersonal[index].surname}",
+                                                                            style: const TextStyle(
+                                                                                fontFamily: "IRANSANCE",
+                                                                                fontSize: 18,
+                                                                                fontWeight: FontWeight.bold,
+                                                                                color: ColorConst.white),
+                                                                        ),
+                                                                      ),
+                                                                          )),
+                                                                  Expanded(
+                                                                    child:
+                                                                        Container(),
+                                                                    flex: 1,
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .end,
+                                                                children: [
+                                                                  Container(
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                    padding: EdgeInsets.symmetric(
+                                                                        horizontal:
+                                                                            Get.width *
+                                                                                0.01,
+                                                                        vertical:
+                                                                            Get.height *
+                                                                                0.01),
+                                                                    child: Container(
+                                                                        alignment: Alignment.center,
+                                                                        width: Get.width * 0.25,
+                                                                        height: Get.height,
+                                                                        child: CircleAvatar(
+                                                                          radius:
+                                                                              Get.width * 0.25,
+                                                                          backgroundImage:
+                                                                              NetworkImage(BASEURLPROFILEIMAGE + PatientsListController.to.listPersonal[index].image.toString()),
+                                                                        )),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+
+                                                    ],
+                                                  );
+                                                })
+                                            : Center(
+                                                child: SizedBox(
+                                                    width: Get.width * 0.3,
+                                                    height: Get.width * 0.3,
+                                                    child:
+                                                        FxLoader.cubeGridLoader(
+                                                            color:
+                                                                Colors.black12,
+                                                            size: Get.width *
+                                                                0.15)))),
                           ),
                         ],
                       ),
                     )),
-
                 Expanded(
                     flex: 1,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                           Container(
-                            height: Get.height * 0.07,
-                            width: Get.width * 0.45,
-                            decoration: const BoxDecoration(
-                              color: ColorConst.white,
-                            ),
-                            alignment: Alignment.center,
+                        Container(
+                          height: Get.height * 0.07,
+                          width: Get.width * 0.45,
+                          decoration: const BoxDecoration(
+                            color: ColorConst.white,
                           ),
+                          alignment: Alignment.center,
+                        ),
                       ],
                     )),
               ],

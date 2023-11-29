@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -15,51 +14,41 @@ import 'package:note_app/feature/login/date/model/model_login_form_send_code_dat
 
 import 'package:note_app/feature/login/date/remote/login_remote.dart';
 import 'package:note_app/feature/patients_list/data/model/model_list_visit.dart';
-import 'package:note_app/feature/patients_list/data/remote/list_visit_remote.dart';
-
-
+import 'package:note_app/feature/patients_list/data/model/model_requests.dart';
+import 'package:note_app/feature/patients_list/data/remote/patients_list_remote.dart';
 
 class PatientsListController extends GetxController {
   static PatientsListController get to => Get.find<PatientsListController>();
 
-
-
-
-
-
-
-
   @override
-  void onInit(){
+  void onInit() {
     // TODO: implement onInit
     super.onInit();
-    getServicesList();
+    getPersonalList();
   }
 
 
 
-
-  final  ListVisitRemote ListVisiRemoteDatasource =  ListVisitRemote();
+  final PatientsListRemote PatientsListRemoteDatasource = PatientsListRemote();
 
   RxBool ItemStatus = false.obs;
 
-  RxBool stateLoadData=false.obs;
-  List<ModelListVisit> listVisit=[];
-  Future<BaseListDaynamic> getServicesList()async
-  {
-    listVisit.clear();
-    stateLoadData.value=false;
-    final baseListDaynamic =
-    await ListVisiRemoteDatasource.getListVisit();
+  RxBool stateLoadData = false.obs;
+  List<ModelRequests> listPersonal = [];
 
-    List<dynamic> tmpData=baseListDaynamic.data!["used_services"];
+  Future<BaseListDaynamic> getPersonalList() async {
+    listPersonal.clear();
+    stateLoadData.value = false;
+    final baseListDaynamic = await PatientsListRemoteDatasource.getPatientsList();
+
+    List<dynamic> tmpData = baseListDaynamic.data!["requests"];
     for (var element in tmpData) {
-      listVisit.add(ModelListVisit.fromJson(element));
+      listPersonal.add(ModelRequests.fromJson(element));
+      print(element.toString());
     }
-    stateLoadData.value=true;
+    stateLoadData.value = true;
     return baseListDaynamic;
   }
-
 
 
 

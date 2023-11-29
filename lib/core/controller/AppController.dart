@@ -14,6 +14,7 @@ class AppController extends GetxController with StateMixin
 
   late final prefs;
   int idService=-1;
+  String stateRequest="";
 
    @override
   void onInit() async{
