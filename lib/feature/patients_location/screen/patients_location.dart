@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,7 @@ import 'package:note_app/core/const/enum.dart';
 import 'package:note_app/core/controller/AppController.dart';
 import 'package:note_app/core/widget/toast/toast.dart';
 import 'package:note_app/core/widget/toast/toast_provider.dart';
-import 'package:note_app/feature/patients_location/controller/MapController.dart';
+import 'package:note_app/feature/patients_location/controller/location_controller.dart';
 
 class patients_location extends StatefulWidget {
   @override
@@ -17,6 +18,8 @@ class patients_location extends StatefulWidget {
 }
 
 class _MapsState extends State<patients_location> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,8 +75,8 @@ class _MapsState extends State<patients_location> {
                   child: Obx(
                     () => FlutterMap(
                         options: MapOptions(
-                          center: LatLng(MapControllerC.to.latitude.value,
-                              MapControllerC.to.longitude.value),
+                          center: LatLng(LocationController.to.latitude.value,
+                              LocationController.to.longitude.value),
                           minZoom: 1,
                           maxZoom: 20,
                           zoom: 10,
@@ -86,8 +89,9 @@ class _MapsState extends State<patients_location> {
                           MarkerLayerOptions(
                             markers: [
                               Marker(
-                                point: LatLng(MapControllerC.to.latitude.value,
-                                    MapControllerC.to.longitude.value),
+                                point: LatLng(
+                                    LocationController.to.latitude.value,
+                                    LocationController.to.longitude.value),
                                 builder: (context) => const Icon(
                                   Icons.location_pin,
                                   color: Colors.red,
@@ -97,7 +101,7 @@ class _MapsState extends State<patients_location> {
                             ],
                           ),
                         ],
-                        mapController: MapControllerC.to.mapController),
+                        mapController: LocationController.to.mapController),
                   ),
                 ),
                 // Expanded(
@@ -269,23 +273,23 @@ class _MapsState extends State<patients_location> {
                     child: Container(
                       alignment: Alignment.center,
                       child: GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Get.defaultDialog(
                               barrierDismissible: true,
                               contentPadding: EdgeInsets.zero,
                               title: "تعیین وضعیت درخواست ",
                               content: Column(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-
                                   const Divider(
                                     color: Colors.transparent,
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      MapControllerC.to.getState(MapControllerC.to.status);
-                                      MapControllerC.to.changeState()
+                                      LocationController.to.getState(
+                                          LocationController.to.status);
+                                      LocationController.to
+                                          .changeState()
                                           .then((value) {
                                         Get.back();
 
@@ -298,10 +302,9 @@ class _MapsState extends State<patients_location> {
                                           position: ToastPosition.topRight,
                                         );
 
-                                               if(value.success!)
-                                                 {
-                                                   MapControllerC.to.indexState++;
-                                                 }
+                                        if (value.success!) {
+                                          LocationController.to.indexState++;
+                                        }
                                       });
                                     },
                                     child: Container(
@@ -309,67 +312,73 @@ class _MapsState extends State<patients_location> {
                                       width: Get.width * 0.5,
                                       decoration: const BoxDecoration(
                                         color: ColorConst.primaryDark,
-                                        borderRadius:
-                                        BorderRadius.all(
-                                            Radius.circular(
-                                                50)),
-                                      ),
-                                      alignment: Alignment.center,
-                                      child:
-                                        Text(
-                                          MapControllerC.to.listState[MapControllerC.to.indexState+1],
-                                          style: SizeButton,
-                                        ),
-
-                                    ),
-                                  ),
-
-                                  const Divider(
-                                    color: Colors.transparent,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                    },
-                                    child: Container(
-                                      height: Get.height * 0.06,
-                                      width: Get.width * 0.5,
-                                      decoration:  BoxDecoration(
-                                        color: ColorConst.primaryDark.withOpacity(0.6),
-                                        borderRadius:
-                                        const BorderRadius.all(
-                                            Radius.circular(
-                                                50)),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(50)),
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "انصراف",
+                                        LocationController.to.listState[
+                                            LocationController
+                                                    .to.indexState.value +
+                                                1],
                                         style: SizeButton,
                                       ),
                                     ),
                                   ),
+                                  const Divider(
+                                    color: Colors.transparent,
+                                  ),
+                                 GestureDetector(
+                                     onTap: () {
+                                       LocationController.to.dialogStatus = true as RxBool;
+                                       Get.back();
+                                     },
+                                     child: Container(
+                                       height: Get.height * 0.06,
+                                       width: Get.width * 0.5,
+                                       decoration: BoxDecoration(
+                                         color: ColorConst.primaryDark
+                                             .withOpacity(0.6),
+                                         borderRadius: const BorderRadius.all(
+                                             Radius.circular(50)),
+                                       ),
+                                       alignment: Alignment.center,
+                                       child: Text(
+                                         "انصراف",
+                                         style: SizeButton,
+                                       ),
+                                     ),
+                                   )
                                 ],
                               ),
                               backgroundColor: Colors.white,
-                              titleStyle:
-                              const TextStyle(color: Colors.black),
+                              titleStyle: const TextStyle(color: Colors.black),
                               middleTextStyle:
-                              const TextStyle(color: Colors.black),
+                                  const TextStyle(color: Colors.black),
                               titlePadding: EdgeInsets.zero,
                               radius: 30);
                         },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: Get.height * 0.07,
-                          width: Get.width * 0.45,
-                          decoration: const BoxDecoration(
-                            color: ColorConst.primaryDark,
-                            borderRadius: BorderRadius.all(Radius.circular(50)),
-                          ),
-                          child: Text(
-                            "تایید",
-                            style: SizeButton,
-                          ),
-                        ),
+                        child: Obx(() {
+                          if (LocationController.to.listState[LocationController.to.indexState.value] == "finish" ||
+                              LocationController.to.dialogStatus == false) {
+                            return Container();
+                          } else {
+                            return Container(
+                              alignment: Alignment.center,
+                              height: Get.height * 0.07,
+                              width: Get.width * 0.45,
+                              decoration: const BoxDecoration(
+                                color: ColorConst.primaryDark,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50)),
+                              ),
+                              child: Text(
+                                "تایید",
+                                style: SizeButton,
+                              ),
+                            );
+                          }
+                        }),
                       ),
                     ),
                   ),

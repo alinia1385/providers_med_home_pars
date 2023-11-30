@@ -33,7 +33,7 @@ class PatientsList extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: Get.height * 0.07,
+                          height: Get.height * 0.1,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -42,11 +42,10 @@ class PatientsList extends StatelessWidget {
                                   Get.back();
                                 },
                                 child: Container(
-                                  margin:
-                                      const EdgeInsets.only(right: 25, top: 10),
-                                  alignment: Alignment.centerRight,
-                                  width: Get.width * 0.11,
-                                  height: Get.height,
+                                  margin: EdgeInsets.only(right: Get.width * 0.04),
+                                  alignment: Alignment.centerLeft,
+                                  width: Get.width * 0.1,
+                                  height: Get.height * 0.1,
                                   child: const Image(
                                       image:
                                           AssetImage("assets/images/back.png")),
@@ -138,32 +137,45 @@ class PatientsList extends StatelessWidget {
                                                                       flex: 4,
                                                                       child:
                                                                           GestureDetector(
-                                                                            onTap: (){
-                                                                              AppController.to.stateRequest=PatientsListController.to.listPersonal[index].status.toString();
+                                                                        onTap:
+                                                                            () {
+                                                                          AppController.to.stateRequest = PatientsListController
+                                                                              .to
+                                                                              .listPersonal[index]
+                                                                              .status
+                                                                              .toString();
 
-                                                                              Get.toNamed("/patients_location",arguments: [
-                                                                                {"lat-long":PatientsListController.to.listPersonal[index].latlong.toString()},
-                                                                                {"status":PatientsListController.to.listPersonal[index].status.toString()},
-                                                                                {"request_id":PatientsListController.to.listPersonal[index].id.toString()},
+                                                                          Get.toNamed(
+                                                                              "/patients_location",
+                                                                              arguments: [
+                                                                                {
+                                                                                  "lat-long": PatientsListController.to.listPersonal[index].latlong.toString()
+                                                                                },
+                                                                                {
+                                                                                  "status": PatientsListController.to.listPersonal[index].status.toString()
+                                                                                },
+                                                                                {
+                                                                                  "request_id": PatientsListController.to.listPersonal[index].id.toString()
+                                                                                },
                                                                               ]);
-
-
-                                                                            },
-                                                                            child: Container(
-                                                                              padding: EdgeInsets.only(right: Get.width*0.11 ),
-                                                                              alignment: Alignment.centerRight,
-                                                                        decoration:
+                                                                        },
+                                                                        child:
+                                                                            Container(
+                                                                          padding:
+                                                                              EdgeInsets.only(right: Get.width * 0.11),
+                                                                          alignment:
+                                                                              Alignment.centerRight,
+                                                                          decoration:
                                                                               BoxDecoration(
                                                                             color: PatientsListController.to.ItemStatus.value
                                                                                 ? Brwon
                                                                                 : ColorConst.primaryDark,
                                                                             borderRadius:
                                                                                 BorderRadius.all(Radius.circular(Get.width * 0.01)),
-                                                                        ),
-                                                                        margin: EdgeInsets.symmetric(
-                                                                              vertical:
-                                                                                  Get.height * 0.02),
-                                                                        child:
+                                                                          ),
+                                                                          margin:
+                                                                              EdgeInsets.symmetric(vertical: Get.height * 0.02),
+                                                                          child:
                                                                               Text(
                                                                             "${PatientsListController.to.listPersonal[index].name}${PatientsListController.to.listPersonal[index].surname}",
                                                                             style: const TextStyle(
@@ -171,9 +183,9 @@ class PatientsList extends StatelessWidget {
                                                                                 fontSize: 18,
                                                                                 fontWeight: FontWeight.bold,
                                                                                 color: ColorConst.white),
+                                                                          ),
                                                                         ),
-                                                                      ),
-                                                                          )),
+                                                                      )),
                                                                   Expanded(
                                                                     child:
                                                                         Container(),
@@ -218,7 +230,6 @@ class PatientsList extends StatelessWidget {
                                                           ),
                                                         ),
                                                       ),
-
                                                     ],
                                                   );
                                                 })

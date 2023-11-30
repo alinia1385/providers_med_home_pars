@@ -220,86 +220,59 @@ class Verify extends StatelessWidget {
                   flex: 1,
                   child: GestureDetector(
                     onTap: () {},
-                    child: Obx(() {
+                    child:  Obx(() {
+                      final countdown = timerController.countdown.value;
                       int remainingSeconds = timerController.countdown.value;
                       String timerText =
                           '${(remainingSeconds ~/ 60).toString().padLeft(2, '0')}:${(remainingSeconds % 60).toString().padLeft(2, '0')}';
 
-                      if (remainingSeconds == 0) {
-                        return GetBuilder<TimerController>(
-                          init: TimerController(),
-                          builder: (controller) {
-                            return GestureDetector(
-                              onTap: () {
-                                Get.dialog(
-                                    SizedBox(
-                                      width: Get.width * 0.1,
-                                      height: Get.width * 0.1,
-                                      child: ColorLoader3(
-                                        radius: 20,
-                                        dotRadius: 5.0,
-                                      ),
-                                    ),
-                                    barrierDismissible: false);
-                                LoginController.to.LoginServise().then((value) {
-                                  Get.back();
-
-                                  FxToast.showToast(
-                                    context: context,
-                                    toast: ToastWithoutColor.success(
-                                      message: value.message!,
-                                      icon: Icons.info_rounded,
-                                    ),
-                                    position: ToastPosition.topRight,
-                                  );
-                                });
-                                controller.hideWidget();
-                              },
-                              child: Obx(() {
-                                return Visibility(
-                                  visible: controller.isWidgetVisible.value,
-                                  child: Container(
-                                    margin: const EdgeInsets.only(bottom: 50),
-                                    child: const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'ارسال کد',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            // fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                            decoration:
-                                                TextDecoration.underline,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }),
-                            );
-                          },
+                      if (countdown > 0) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                            ' تا امکان ارسال مجدد کد ',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            Text(
+                              ' $timerText ' ,
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                            const Icon(Icons.access_time,),
+                          ],
                         );
                       } else {
-                        return Container(
-                          margin: const EdgeInsets.only(bottom: 50),
-                          child: Row(
+                        return GestureDetector(
+                          onTap: () {
+                            timerController.showWidget();
+                            //
+                            Get.dialog(
+                                SizedBox(
+                                  width: Get.width * 0.1,
+                                  height: Get.width * 0.1,
+                                  child: ColorLoader3(
+                                    radius: 20,
+                                    dotRadius: 5.0,
+                                  ),
+                                ),
+                                barrierDismissible: false);
+                            //
+                            LoginController.to.reSendServise().then((value){
+                              Get.back();
+                              FxToast.showToast(
+                                context: context,
+                                toast: ToastWithoutColor.success(
+                                  message: value.message!,
+                                  icon: Icons.info_rounded,
+                                ),
+                                position: ToastPosition.topRight,
+                              );
+                            });
+                          },
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
-                                " مانده تا ارسال مجدد کد ",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                ),
-                              ),
-                              Text(
-                                timerText,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                ),
-                              ),
+                              Text('ارسال مجدد کد',style: TextStyle(fontSize: 14,color: ColorConst.primaryDark),),
                             ],
                           ),
                         );
@@ -307,7 +280,6 @@ class Verify extends StatelessWidget {
                     }),
                   ),
                 ),
-                // Expanded(flex: 1, child: Container()),
                 Expanded(
                     flex: 2,
                     child: Row(

@@ -67,10 +67,8 @@ class Profile extends StatelessWidget {
                           // Get.toNamed("/VisitHome");
                         },
                         child: Container(
-
                           alignment: Alignment.topLeft,
                           width: Get.width * 0.11,
-                          height: Get.height,
                           child: const Image(
                               image: AssetImage("assets/images/back.png")),
                         ),

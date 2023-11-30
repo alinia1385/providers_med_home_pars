@@ -80,6 +80,16 @@ class LoginController extends GetxController {
     return baseListDaynamic;
   }
 
+  RxBool stateResend=true.obs;
+  Future<BaseListDaynamic> reSendServise() async {
+    ModelLoginFormData formData= ModelLoginFormData();
+    formData.mobile=mobile.text;
+    formData.type= isDoctor.value ?"doctor":isClinic.value?"clinic":"therapist";
+    final baseListDaynamic = await loginRemoteDatasource.reSendCode(formData);
+    return baseListDaynamic;
+  }
+
+
   Future<BaseListDaynamic> LoginServiseSetCode() async {
     ModelLoginFormDataSetCode values = ModelLoginFormDataSetCode();
     values.code = Txt1.text + Txt2.text + Txt3.text + Txt4.text;

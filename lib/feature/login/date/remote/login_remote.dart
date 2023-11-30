@@ -18,4 +18,8 @@ class LoginRemote
     Response response = await App.client.post('op/code-verify', data:values.toFormData());
     return BaseListDaynamic.fromJson(response.data);
   }
+  Future<BaseListDaynamic> reSendCode(ModelLoginFormData values) async {
+    Response response = await App.client.post('resend-code', data:values.toFormData());
+    return BaseListDaynamic.fromJson(response.data);
+  }
 }
