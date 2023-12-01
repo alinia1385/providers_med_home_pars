@@ -8,18 +8,17 @@ import 'package:geolocator/geolocator.dart';
 import 'package:note_app/core/const/color.dart';
 import 'package:note_app/core/const/enum.dart';
 import 'package:note_app/core/controller/AppController.dart';
+import 'package:note_app/core/widget/ColorLoader3.dart';
 import 'package:note_app/core/widget/toast/toast.dart';
 import 'package:note_app/core/widget/toast/toast_provider.dart';
 import 'package:note_app/feature/patients_location/controller/location_controller.dart';
 
-class patients_location extends StatefulWidget {
+class PatientsLocation extends StatefulWidget {
   @override
   _MapsState createState() => _MapsState();
 }
 
-class _MapsState extends State<patients_location> {
-
-
+class _MapsState extends State<PatientsLocation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,103 +103,6 @@ class _MapsState extends State<patients_location> {
                         mapController: LocationController.to.mapController),
                   ),
                 ),
-                // Expanded(
-                //     flex: 1,
-                //     child: Container()),
-                // Expanded(
-                //   flex: 1,
-                //   child: GestureDetector(
-                //     onTap: (){
-                //       Get.defaultDialog(
-                //         barrierDismissible: true,
-                //           content: Container(
-                //             padding:
-                //             EdgeInsets.all(Get.width * 0.01),
-                //             child: Column(
-                //               mainAxisAlignment:
-                //               MainAxisAlignment.center,
-                //               children: [
-                //                 Text(
-                //                   "تعیین وضعیت درخواست فعال",
-                //                   style: TextStyle(
-                //                       fontSize: Get.width * 0.04),
-                //                 ),
-                //                 const Divider(
-                //                   color: Colors.transparent,
-                //                 ),
-                //
-                //                 GestureDetector(
-                //                   onTap: () {
-                //                   },
-                //                   child: Container(
-                //                     height: Get.height * 0.06,
-                //                     width: Get.width * 0.5,
-                //                     decoration: const BoxDecoration(
-                //                       color: ColorConst.primaryDark,
-                //                       borderRadius:
-                //                       BorderRadius.all(
-                //                           Radius.circular(
-                //                               50)),
-                //                     ),
-                //                     alignment: Alignment.center,
-                //                     child: Text(
-                //                       "مشخصات",
-                //                       style: SizeButton,
-                //                     ),
-                //                   ),
-                //                 ),
-                //                 const Divider(
-                //                   color: Colors.transparent,
-                //                 ),
-                //                 GestureDetector(
-                //                   onTap: () {
-                //                   },
-                //                   child: Container(
-                //                     height: Get.height * 0.06,
-                //                     width: Get.width * 0.5,
-                //                     decoration: const BoxDecoration(
-                //                       color: ColorConst.primaryDark,
-                //                       borderRadius:
-                //                       BorderRadius.all(
-                //                           Radius.circular(
-                //                               50)),
-                //                     ),
-                //                     alignment: Alignment.center,
-                //                     child: Text(
-                //                       "وضعیت",
-                //                       style: SizeButton,
-                //                     ),
-                //                   ),
-                //                 ),
-                //               ],
-                //             ),
-                //           ),
-                //           backgroundColor: Colors.white,
-                //           titleStyle:
-                //           const TextStyle(color: Colors.white),
-                //           middleTextStyle:
-                //           const TextStyle(color: Colors.white),
-                //           radius: 30);
-                //     },
-                //     child: Container(
-                //       alignment: Alignment.center,
-                //       child: Container(
-                //         alignment: Alignment.center,
-                //         height: Get.height * 0.07,
-                //         width: Get.width * 0.45,
-                //         decoration: const BoxDecoration(
-                //           color: ColorConst.primaryDark,
-                //           borderRadius:
-                //           BorderRadius.all(Radius.circular(50)),
-                //         ),
-                //         child: Text(
-                //           "تایید",
-                //           style: SizeButton,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ]),
             ),
           ),
@@ -209,7 +111,7 @@ class _MapsState extends State<patients_location> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
+                    GestureDetector(
                     onTap: () {
                       Get.defaultDialog(
                           barrierDismissible: true,
@@ -323,14 +225,14 @@ class _MapsState extends State<patients_location> {
                                                 1],
                                         style: SizeButton,
                                       ),
-                                    ),
+                                    )
                                   ),
                                   const Divider(
                                     color: Colors.transparent,
                                   ),
                                  GestureDetector(
                                      onTap: () {
-                                       LocationController.to.dialogStatus = true as RxBool;
+                                       LocationController.to.dialogStatus.value = false;
                                        Get.back();
                                      },
                                      child: Container(
@@ -360,7 +262,7 @@ class _MapsState extends State<patients_location> {
                         },
                         child: Obx(() {
                           if (LocationController.to.listState[LocationController.to.indexState.value] == "finish" ||
-                              LocationController.to.dialogStatus == false) {
+                              LocationController.to.dialogStatus.value == false) {
                             return Container();
                           } else {
                             return Container(
@@ -381,7 +283,7 @@ class _MapsState extends State<patients_location> {
                         }),
                       ),
                     ),
-                  ),
+                  )
                 ],
               )),
         ],

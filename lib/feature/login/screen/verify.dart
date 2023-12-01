@@ -245,7 +245,7 @@ class Verify extends StatelessWidget {
                         return GestureDetector(
                           onTap: () {
                             timerController.showWidget();
-                            //
+
                             Get.dialog(
                                 SizedBox(
                                   width: Get.width * 0.1,
@@ -256,7 +256,7 @@ class Verify extends StatelessWidget {
                                   ),
                                 ),
                                 barrierDismissible: false);
-                            //
+
                             LoginController.to.reSendServise().then((value){
                               Get.back();
                               FxToast.showToast(

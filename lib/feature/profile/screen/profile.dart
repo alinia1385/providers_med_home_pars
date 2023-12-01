@@ -56,15 +56,16 @@ class Profile extends StatelessWidget {
                             backgroundImage: NetworkImage(BASEURLPROFILEIMAGE +
                                 ProfileController.to.imageAdress),
                           ),
-                        ):Center(child: Container(child: const Center(child: CircularProgressIndicator(),),))),
+                        ):const Center(
+                            child: Center(
+                              child: CircularProgressIndicator(),))),
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: GestureDetector(
                         onTap: () {
-
-                          // Get.toNamed("/VisitHome");
+                          Get.back();
                         },
                         child: Container(
                           alignment: Alignment.topLeft,

@@ -31,6 +31,7 @@ class LocationController extends GetxController {
 
 
   }
+  RxBool progressBar = true.obs;
   RxBool dialogStatus = true.obs;
   String status="";
   String request_id="";
@@ -42,10 +43,9 @@ class LocationController extends GetxController {
   RxDouble lat=36.287241.obs;
   RxDouble long=59.616426.obs;
   MapController mapController=MapController();
-  RxBool showGreeting = false.obs;
+
 
   Future<void> getUserLocation() async {
-    showGreeting.value=false;
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -57,7 +57,6 @@ class LocationController extends GetxController {
       longitude.value = position.longitude;
       userLocation = LatLng(latitude.value, longitude.value);
       mapController.move(LatLng(latitude.value, longitude.value), 10);
-      showGreeting.value = true;
     } else {
 
     }
