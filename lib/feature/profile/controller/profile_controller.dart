@@ -1,18 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 import 'package:note_app/core/controller/AppController.dart';
-import 'package:note_app/core/model/base_list_daynamic.dart';
 import 'package:note_app/core/model/base_list_daynamic_standard.dart';
 import 'package:note_app/feature/profile/data/model/ModelProfile.dart';
-import 'package:note_app/feature/profile/data/model/profile_form_data.dart';
 import 'package:note_app/feature/profile/data/remote/profile_remote.dart';
-import 'package:note_app/feature/profile/screen/profile.dart';
 
 class ProfileController extends GetxController {
   static ProfileController get to => Get.find<ProfileController>();

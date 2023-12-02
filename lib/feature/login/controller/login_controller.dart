@@ -5,10 +5,9 @@ import 'package:note_app/core/app.dart';
 import 'package:note_app/core/controller/AppController.dart';
 import 'package:note_app/core/model/base_list_daynamic.dart';
 import 'package:note_app/core/model/base_list_daynamic_standard.dart';
-import 'package:note_app/feature/login/date/model/model_login_form_data.dart';
-import 'package:note_app/feature/login/date/model/model_login_form_send_code_data.dart';
-
-import 'package:note_app/feature/login/date/remote/login_remote.dart';
+import 'package:note_app/feature/login/data/model/model_login_form_data.dart';
+import 'package:note_app/feature/login/data/model/model_login_form_send_code_data.dart';
+import 'package:note_app/feature/login/data/remote/login_remote.dart';
 
 class LoginController extends GetxController {
   static LoginController get to => Get.find<LoginController>();
@@ -74,7 +73,6 @@ class LoginController extends GetxController {
   Future<BaseListDaynamicStandard> LoginServise() async {
     ModelLoginFormData formData= ModelLoginFormData();
     formData.mobile=mobile.text;
-    formData.type= isDoctor.value ?"doctor":isClinic.value?"clinic":"therapist";
     final baseListDaynamic = await loginRemoteDatasource.getUser(formData);
 
     return baseListDaynamic;
@@ -84,7 +82,6 @@ class LoginController extends GetxController {
   Future<BaseListDaynamic> reSendServise() async {
     ModelLoginFormData formData= ModelLoginFormData();
     formData.mobile=mobile.text;
-    formData.type= isDoctor.value ?"doctor":isClinic.value?"clinic":"therapist";
     final baseListDaynamic = await loginRemoteDatasource.reSendCode(formData);
     return baseListDaynamic;
   }

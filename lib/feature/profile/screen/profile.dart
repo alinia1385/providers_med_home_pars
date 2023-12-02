@@ -40,13 +40,12 @@ class Profile extends StatelessWidget {
                         child:Obx(()=>   ProfileController.to.stateSetProfile.value ? Container(
 
                           alignment: Alignment.center,
-                          width: 125,
+                          width: Get.width * 0.5,
                           height: Get.height,
                           child:
                           ProfileController.to.imageAdress.isEmpty
                               ?
                           const CircleAvatar(
-                            radius: 100,
                             backgroundColor: ColorConst.primaryDark,
                             backgroundImage: AssetImage(
                                 "assets/images/person_add_icon.png"),
@@ -68,10 +67,13 @@ class Profile extends StatelessWidget {
                           Get.back();
                         },
                         child: Container(
-                          alignment: Alignment.topLeft,
-                          width: Get.width * 0.11,
+                          margin: EdgeInsets.only(right: Get.width * 0.02),
+                          alignment: Alignment.centerLeft,
+                          width: Get.width * 0.05,
+                          height: Get.height * 0.05,
                           child: const Image(
-                              image: AssetImage("assets/images/back.png")),
+                              image:
+                              AssetImage("assets/images/back.png")),
                         ),
                       ),
                     ),
