@@ -315,7 +315,7 @@ class Verify extends StatelessWidget {
                                 );
 
                                 if (value.success!) {
-                                  Get.toNamed("/VisitHome");
+                                  Get.offAllNamed("/VisitHome");
                                 }else{
 
                                 }

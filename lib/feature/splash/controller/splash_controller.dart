@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:note_app/core/app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -14,17 +16,19 @@ class SplashController extends GetxController {
   // RxBool isLoadVideo = false.obs;
   late Timer timer;
 
+  String data = "";
 
   @override
-  void onInit(){
+  void onInit() async{
     // TODO: implement onInit
 
 
 
     super.onInit();
 
+    final tmpPrefs = await SharedPreferences.getInstance();
 
-
+    data = await tmpPrefs.getString("token").toString();
       splashTimer();
 
 
@@ -40,7 +44,15 @@ class SplashController extends GetxController {
       //   Get.offAndToNamed("Login");
       // }
       timer.cancel();
-      Get.offAndToNamed("Login");
+
+      if(!data.contains("null"))
+        {
+          App.client.options.headers["Authorization"] = "Bearer $data";
+          Get.offAllNamed("/VisitHome");
+        }else
+          {
+            Get.offAllNamed("/Login");
+          }
     });
   }
 
