@@ -287,10 +287,21 @@ class Verify extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            if (LoginController.to.Txt1.text.isNotEmpty ||
-                                LoginController.to.Txt2.text.isNotEmpty ||
-                                LoginController.to.Txt3.text.isNotEmpty ||
-                                LoginController.to.Txt4.text.isNotEmpty) {
+                            bool anyTextFieldIsEmpty = LoginController.to.Txt1.text.isEmpty ||
+                                LoginController.to.Txt2.text.isEmpty ||
+                                LoginController.to.Txt3.text.isEmpty ||
+                                LoginController.to.Txt4.text.isEmpty;
+
+                            if (anyTextFieldIsEmpty) {
+                              FxToast.showToast(
+                                context: context,
+                                toast: const ToastWithoutColor.success(
+                                    message: "لطفا کد تایید را وارد نمایید",
+                                    icon: Icons.error,
+                                    iconColor: Colors.red),
+                                position: ToastPosition.topRight,
+                              );
+                            } else {
                               Get.dialog(
                                   SizedBox(
                                     width: Get.width * 0.1,
@@ -321,15 +332,6 @@ class Verify extends StatelessWidget {
                                 }
                               });
                               // Get.toNamed("/Profile");
-                            } else {
-                              FxToast.showToast(
-                                context: context,
-                                toast: const ToastWithoutColor.success(
-                                    message: "لطفا کد تایید را وارد نمایید",
-                                    icon: Icons.error,
-                                    iconColor: Colors.red),
-                                position: ToastPosition.topRight,
-                              );
                             }
                           },
                           child: Container(
