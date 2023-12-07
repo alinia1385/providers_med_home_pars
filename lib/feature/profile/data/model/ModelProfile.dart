@@ -34,6 +34,7 @@ class ModelProfile {
   String? owner_mobile;
   int? msn;
   String? specialty;
+  String? type;
 
 
   ModelProfile({
@@ -70,6 +71,7 @@ class ModelProfile {
     this.owner_mobile,
     this.msn,
     this.specialty,
+    this.type,
   });
 
   ModelProfile.fromJson(Map<String, dynamic> json) {
@@ -106,6 +108,7 @@ class ModelProfile {
     owner_mobile = json['owner_mobile'];
     msn = json['msn'];
     specialty = json['specialty'];
+    type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -145,6 +148,7 @@ class ModelProfile {
     data['owner_mobile'] = owner_mobile;
     data['msn'] = msn;
     data['specialty'] = specialty;
+    data['type'] = type;
 
     return data;
   }
@@ -184,6 +188,7 @@ class ModelProfile {
       'owner_mobile': owner_mobile,
       'msn': msn,
       'specialty': specialty,
+      'type': type,
       'phone1':phone1,
       'phone2':phone2,
     });

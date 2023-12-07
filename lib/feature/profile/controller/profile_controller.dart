@@ -100,7 +100,7 @@ class ProfileController extends GetxController {
     stateLoad.value = false;
     final baseListDaynamic = await ProfileRemoteDatasource.getProfile();
     mProfile = ModelProfile.fromJson(baseListDaynamic.data!);
-    AppController.to.type.contains("clinic")
+    AppController.to.type.contains(mProfile.type.toString())
         ? setValueClinic()
         : setValueDoctorTherapist();
     stateLoad.value = true;

@@ -82,7 +82,6 @@ class LocationController extends GetxController {
   RxBool changeStateValue = false.obs;
   List<String> listState=["new","accept","arrive","finish","cancel"];
   Future<BaseListDaynamic> changeState() async {
-
     changeStateValue.value = false;
     final baseListDaynamic = await MapRemoteDatasource.changeState(listState[indexState.value+1], request_id);
     changeStateValue.value = true;

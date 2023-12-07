@@ -12,9 +12,6 @@ import 'package:note_app/feature/login/data/remote/login_remote.dart';
 class LoginController extends GetxController {
   static LoginController get to => Get.find<LoginController>();
 
-  // late VideoPlayerController videoPlayerController;
-
-  // RxBool isLoadVideo = false.obs;
   final FocusNode firstTextFieldFocusNode = FocusNode();
   final FocusNode secondTextFieldFocusNode = FocusNode();
   final FocusNode thirdTextFieldFocusNode = FocusNode();

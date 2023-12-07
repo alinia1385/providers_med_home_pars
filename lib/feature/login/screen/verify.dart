@@ -316,22 +316,29 @@ class Verify extends StatelessWidget {
                                   .LoginServiseSetCode()
                                   .then((value) {
                                 Get.back();
-                                FxToast.showToast(
-                                  context: context,
-                                  toast: ToastWithoutColor.success(
-                                    message: value.message.toString(),
-                                    icon: Icons.info_rounded,
-                                  ),
-                                  position: ToastPosition.topRight,
-                                );
 
                                 if (value.success!) {
                                   Get.offAllNamed("/VisitHome");
+                                  FxToast.showToast(
+                                    context: context,
+                                    toast: ToastWithoutColor.success(
+                                      message: "خوش آمدید",
+                                      icon: Icons.info_rounded,
+                                    ),
+                                    position: ToastPosition.topRight,
+                                  );
                                 }else{
-
+                                  FxToast.showToast(
+                                    context: context,
+                                    toast: const ToastWithoutColor.error(
+                                        message: "کد وارد شده صحیح نیست.",
+                                        icon: Icons.error,
+                                        iconColor: Colors.red
+                                    ),
+                                    position: ToastPosition.topRight,
+                                  );
                                 }
                               });
-                              // Get.toNamed("/Profile");
                             }
                           },
                           child: Container(

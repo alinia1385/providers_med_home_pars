@@ -17,6 +17,9 @@ class Api {
         connectTimeout: const Duration(seconds: 30),
         sendTimeout: const Duration(seconds: 30),
         receiveDataWhenStatusError: true,
+        validateStatus: (status) {
+          return status! < 500;
+        },
         // headers: {
         //   'apiversion': 30,
         //   'appversion': 1,

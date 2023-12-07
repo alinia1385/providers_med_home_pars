@@ -10,16 +10,16 @@ class TimerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    startCountdown(); // تغییر نام متد به startCountdown
+    startCountdown();
   }
 
   void startCountdown() {
-    countdown.value = 8; // شروع تایمر از 18
+    countdown.value = 180; // شروع تایمر از 18
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       countdown.value--;
       if (countdown.value == 0) {
         timer.cancel();
-        isWidgetVisible.value = true; // نمایش دکمه ارسال کد
+        isWidgetVisible.value = true;
       }
     });
   }
@@ -34,6 +34,6 @@ class TimerController extends GetxController {
   }
 
   void showWidget() {
-    startCountdown(); // شروع تایمر جدید برای مجدداً شمارش معکوس
+    startCountdown();
   }
 }
