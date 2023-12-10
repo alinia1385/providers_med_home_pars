@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:note_app/core/const/color.dart';
 import 'package:note_app/core/const/enum.dart';
 import 'package:note_app/core/const/url.dart';
 import 'package:note_app/core/controller/AppController.dart';
+import 'package:note_app/core/widget/ColorLoader3.dart';
 import 'package:note_app/core/widget/toast/toast.dart';
 import 'package:note_app/core/widget/toast/toast_provider.dart';
 import 'package:note_app/feature/profile/controller/profile_controller.dart';
@@ -47,7 +48,7 @@ class Profile extends StatelessWidget {
                             backgroundColor: ColorConst.primaryDark,
                             backgroundImage: AssetImage(
                                 "assets/images/person_add_icon.png"),
-                          )
+                        )
                               : CircleAvatar(
                             radius: 100,
                             backgroundImage: NetworkImage(BASEURLPROFILEIMAGE +
@@ -89,7 +90,18 @@ class Profile extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
+                      Get.dialog(
+                      SizedBox(
+                      width: Get.width * 0.1,
+                      height: Get.width * 0.1,
+                      child: ColorLoader3(
+                      radius: 20,
+                      dotRadius: 5.0,
+                      ),
+                      ),
+                      barrierDismissible: false);
                         ProfileController.to.setProfile().then((value) {
+                      Get.back();
                           FxToast.showToast(
                             context: context,
                             toast: ToastWithoutColor.success(

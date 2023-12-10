@@ -321,7 +321,7 @@ class Verify extends StatelessWidget {
                                   Get.offAllNamed("/VisitHome");
                                   FxToast.showToast(
                                     context: context,
-                                    toast: ToastWithoutColor.success(
+                                    toast: const ToastWithoutColor.success(
                                       message: "خوش آمدید",
                                       icon: Icons.info_rounded,
                                     ),
