@@ -5,7 +5,7 @@ import 'package:note_app/core/const/color.dart';
 import 'package:note_app/core/controller/AppController.dart';
 import 'package:note_app/core/loader/loader.dart';
 import 'package:note_app/feature/patients_request/controller/patients_request_controller.dart';
-
+import 'dart:js' as js;
 class PatientsRequest extends StatelessWidget {
   const PatientsRequest({super.key});
 
@@ -175,6 +175,7 @@ class PatientsRequest extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () async{
+
 
                             await Get.toNamed("/Request");
                             PatientsRequestController.to.getServicesList();

@@ -9,7 +9,7 @@ import 'package:note_app/core/loader/loader.dart';
 import 'package:note_app/core/widget/toast/toast.dart';
 import 'package:note_app/core/widget/toast/toast_provider.dart';
 import 'package:note_app/feature/patients_list/controller/patients_list_controller.dart';
-
+import 'dart:js' as js;
 class PatientsList extends StatelessWidget {
   const PatientsList({super.key});
 
@@ -139,6 +139,9 @@ class PatientsList extends StatelessWidget {
                                                                           GestureDetector(
                                                                         onTap:
                                                                             () {
+
+
+                                                                            /// js.context.callMethod('open', ['https://stackoverflow.com/questions/ask']);
                                                                           AppController.to.stateRequest = PatientsListController
                                                                               .to
                                                                               .listPersonal[index]

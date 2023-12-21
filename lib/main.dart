@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/PatientsList", page: ()=>PatientsList(),binding: PatientsListInit()),
         GetPage(name: "/PatientsRequest", page: ()=>PatientsRequest(),binding: PatientsRequestInit()),
         GetPage(name: "/PatientsInfo", page: ()=>PatientsInfo()),
-        GetPage(name: "/patients_location", page: ()=>PatientsLocation(),binding: MapInit()),
+        GetPage(name: "/patients_location", page: ()=>patients_location(),binding: MapInit()),
       ],
     );
   }

@@ -43,11 +43,11 @@ class ProfileController extends GetxController {
 
   ///false is man - true is woman
 
-  String imageAdress = "";
+
 
   RxBool man = false.obs;
   RxBool woman = false.obs;
-
+  String imageAdress = "";
   selectProfileImageSend() async {
     FilePickerResult? result = await FilePicker.platform
         .pickFiles(type: FileType.image, allowMultiple: false);
