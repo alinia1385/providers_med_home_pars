@@ -132,20 +132,20 @@ class PatientsRequest extends StatelessWidget {
                                                         fontSize:
                                                             Get.width * 0.04),
                                                   )),
-                                                  Expanded(
-                                                      child: Text(
-                                                        PatientsRequestController
-                                                        .to
-                                                        .listVisit[index]
-                                                        .personType
-                                                        .toString(),
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontFamily: "IRANSANCE",
-                                                        fontSize:
-                                                            Get.width * 0.04),
-                                                  )),
+                                                  // Expanded(
+                                                  //     child: Text(
+                                                  //       PatientsRequestController
+                                                  //       .to
+                                                  //       .listVisit[index]
+                                                  //       .personType
+                                                  //       .toString(),
+                                                  //   textAlign: TextAlign.center,
+                                                  //   style: TextStyle(
+                                                  //       color: Colors.white,
+                                                  //       fontFamily: "IRANSANCE",
+                                                  //       fontSize:
+                                                  //           Get.width * 0.04),
+                                                  // )),
                                                 ],
                                               ),
                                             ),

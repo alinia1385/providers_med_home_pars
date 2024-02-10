@@ -70,11 +70,11 @@ class LocationController extends GetxController {
 
     switch(data)
     {
-      case "new":rxState.value="درخواست خدمت";indexState=0.obs ;break;
-      case "accept":rxState.value="شروع خدمت"; indexState=1.obs;break;
-      case "arrived":rxState.value="در مسیر خدمت";indexState=2.obs; break;
-      case "finish":rxState.value="اتمام خدمت"; indexState=3.obs;break;
-      case "cancel":rxState.value="انصراف از خدمت";indexState=4.obs; break;
+      case "new":rxState.value="درخواست خدمت";indexState.value=0 ;break;
+      case "accept":rxState.value="شروع خدمت"; indexState.value=1;break;
+      case "arrived":rxState.value="در مسیر خدمت";indexState.value=2; break;
+      case "finish":rxState.value="اتمام خدمت"; indexState.value=3;break;
+      case "cancel":rxState.value="انصراف از خدمت";indexState.value=4; break;
     }
 
   }
@@ -83,7 +83,9 @@ class LocationController extends GetxController {
   List<String> listState=["new","accept","arrive","finish","cancel"];
   Future<BaseListDaynamic> changeState() async {
     changeStateValue.value = false;
-    final baseListDaynamic = await MapRemoteDatasource.changeState(listState[indexState.value+1], request_id);
+
+    //print(indexState.v print(listState[indexState.value+1]);alue);
+    final baseListDaynamic = await MapRemoteDatasource.changeState(listState[indexState.value], request_id);
     changeStateValue.value = true;
     return baseListDaynamic;
   }

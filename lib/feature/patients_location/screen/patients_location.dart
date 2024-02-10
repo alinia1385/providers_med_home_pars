@@ -11,6 +11,7 @@ import 'package:note_app/core/widget/toast/toast.dart';
 import 'package:note_app/core/widget/toast/toast_provider.dart';
 import 'dart:js' as js;
 import 'package:note_app/feature/patients_location/controller/location_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class patients_location extends StatefulWidget {
   @override
@@ -63,6 +64,7 @@ class _MapsState extends State<patients_location> {
                   ),
                 ],
               )),
+
           Expanded(
             flex: 8,
             child: Container(
@@ -72,8 +74,11 @@ class _MapsState extends State<patients_location> {
                   flex: 3,
                   child:GestureDetector(
                       onTap: (){
-                        js.context.callMethod('open', ['http://maps.google.com/?ll=${LocationController.to.latitude},${LocationController.to.longitude}']);
+
+                        /// js.context.callMethod('open', ['http://maps.google.com/?ll=${LocationController.to.latitude},${LocationController.to.longitude}']);
+                        openMap(LocationController.to.latitude.toDouble(),LocationController.to.longitude.toDouble());
                       },
+
                       child: Container(child:Image.asset("assets/images/map.png",fit: BoxFit.cover),)
                   ),
                 ),
@@ -151,6 +156,12 @@ class _MapsState extends State<patients_location> {
                       alignment: Alignment.center,
                       child: GestureDetector(
                         onTap: (){
+
+                          if(
+
+                          LocationController.to.indexState.value<3
+
+                          ){
                           Get.defaultDialog(
                               barrierDismissible: true,
                               contentPadding: EdgeInsets.zero,
@@ -168,8 +179,8 @@ class _MapsState extends State<patients_location> {
                                       LocationController.to.getState(LocationController.to.status);
                                       LocationController.to.changeState()
                                           .then((value) {
-                                        Get.back();
-
+                                        // LocationController.to.indexState.value++;
+                                            Get.back();
                                         FxToast.showToast(
                                           context: context,
                                           toast: ToastWithoutColor.success(
@@ -178,11 +189,10 @@ class _MapsState extends State<patients_location> {
                                           ),
                                           position: ToastPosition.topRight,
                                         );
-
-                                               if(value.success!)
-                                                 {
-                                                   LocationController.to.indexState++;
-                                                 }
+                                       if(value.success!)
+                                         {
+                                           LocationController.to.indexState++;
+                                         }
                                       });
                                     },
                                     child: Container(
@@ -210,6 +220,24 @@ class _MapsState extends State<patients_location> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
+                                      LocationController.to.getState(LocationController.to.indexState.value.toString());
+                                      LocationController.to.changeState()
+                                          .then((value) {
+
+                                        Get.back();
+                                        FxToast.showToast(
+                                          context: context,
+                                          toast: ToastWithoutColor.success(
+                                            message: value.message!,
+                                            icon: Icons.info_rounded,
+                                          ),
+                                          position: ToastPosition.topRight,
+                                        );
+                                        if(value.success!)
+                                        {
+                                          LocationController.to.indexState++;
+                                        }
+                                      });
                                     },
                                     child: Container(
                                       height: Get.height * 0.06,
@@ -223,7 +251,7 @@ class _MapsState extends State<patients_location> {
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "انصراف",
+                                        "کنسل",
                                         style: SizeButton,
                                       ),
                                     ),
@@ -236,19 +264,32 @@ class _MapsState extends State<patients_location> {
                               middleTextStyle:
                               const TextStyle(color: Colors.black),
                               titlePadding: EdgeInsets.zero,
-                              radius: 30);
+                              radius: 30);}
+                          else
+                            {
+                              FxToast.showToast(
+                                context: context,
+                                toast: ToastWithoutColor.success(
+                                  message: "شما مجاز به تغییر وضعیت نمی باشد",
+                                  icon: Icons.info_rounded,
+                                ),
+                                position: ToastPosition.topRight,
+                              );
+                            }
                         },
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: Get.height * 0.07,
-                          width: Get.width * 0.45,
-                          decoration: const BoxDecoration(
-                            color: ColorConst.primaryDark,
-                            borderRadius: BorderRadius.all(Radius.circular(50)),
-                          ),
-                          child: Text(
-                            "تایید",
-                            style: SizeButton,
+                        child: Obx(
+                          ()=>Container(
+                            alignment: Alignment.center,
+                            height: Get.height * 0.07,
+                            width: Get.width * 0.45,
+                            decoration:  BoxDecoration(
+                              color:  LocationController.to.indexState.value <3 ?ColorConst.primaryDark:Colors.grey,
+                              borderRadius: BorderRadius.all(Radius.circular(50)),
+                            ),
+                            child: Text(
+                              "تایید",
+                              style: SizeButton,
+                            ),
                           ),
                         ),
                       ),
@@ -260,4 +301,16 @@ class _MapsState extends State<patients_location> {
       ),
     );
   }
+
+
+  Future<void> openMap(double latitude, double longitude) async {
+
+    final url = 'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
 }

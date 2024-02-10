@@ -39,6 +39,8 @@ class PatientsRequestController extends GetxController {
     final baseListDaynamic =
     await ListVisiRemoteDatasource.getListVisit();
 
+    print(baseListDaynamic.data!["used_services"]);
+
     List<dynamic> tmpData=baseListDaynamic.data!["used_services"];
     for (var element in tmpData) {
       listVisit.add(ModelListVisit.fromJson(element));

@@ -160,6 +160,12 @@ class PatientsList extends StatelessWidget {
                                                                                 {
                                                                                   "request_id": PatientsListController.to.listPersonal[index].id.toString()
                                                                                 },
+                                                                                {
+                                                                                  "adress": PatientsListController.to.listPersonal[index].id.toString()
+                                                                                },
+                                                                                {
+                                                                                  "request_id": PatientsListController.to.listPersonal[index].id.toString()
+                                                                                },
                                                                               ]);
                                                                         },
                                                                         child:
@@ -180,7 +186,7 @@ class PatientsList extends StatelessWidget {
                                                                               EdgeInsets.symmetric(vertical: Get.height * 0.02),
                                                                           child:
                                                                               Text(
-                                                                            "${PatientsListController.to.listPersonal[index].name}${PatientsListController.to.listPersonal[index].surname}",
+                                                                            "${PatientsListController.to.listPersonal[index].name} ${PatientsListController.to.listPersonal[index].surname}",
                                                                             style: const TextStyle(
                                                                                 fontFamily: "IRANSANCE",
                                                                                 fontSize: 18,
