@@ -232,13 +232,14 @@ class Verify extends StatelessWidget {
                           children: [
                             const Text(
                             ' تا امکان ارسال مجدد کد ',
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(fontSize: 14,
+                                fontFamily: "IRANSANCE",),
                             ),
                             Text(
-                              ' $timerText ' ,
-                              style: const TextStyle(fontSize: 14),
+                              ' $timerText ',
+                              style: const TextStyle(fontSize: 12 , fontFamily: "IRANSANCE"),
                             ),
-                            const Icon(Icons.access_time,),
+                            const Icon(Icons.access_time, size: 14,)
                           ],
                         );
                       } else {
@@ -272,7 +273,9 @@ class Verify extends StatelessWidget {
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('ارسال مجدد کد',style: TextStyle(fontSize: 14,color: ColorConst.primaryDark),),
+                              Text('ارسال مجدد کد',style: TextStyle(fontSize: 14,
+                                color: ColorConst.primaryDark,
+                                fontFamily: "IRANSANCE",),),
                             ],
                           ),
                         );

@@ -102,10 +102,11 @@ class Profile extends StatelessWidget {
                       barrierDismissible: false);
                         ProfileController.to.setProfile().then((value) {
                       Get.back();
+
                           FxToast.showToast(
                             context: context,
-                            toast: ToastWithoutColor.success(
-                              message: value.message!,
+                            toast:  ToastWithoutColor.success(
+                              message: value.message!,textStyle: const TextStyle(color: Colors.red),
                               icon: Icons.info_rounded,
                             ),
                             position: ToastPosition.topRight,

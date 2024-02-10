@@ -101,9 +101,10 @@ class ProfileController extends GetxController {
     final baseListDaynamic = await ProfileRemoteDatasource.getProfile();
     mProfile = ModelProfile.fromJson(baseListDaynamic.data!);
     AppController.to.type.contains("clinic")
-        ? setValueClinic()
-        : setValueDoctorTherapist();
+        ? setValueDoctorTherapist()
+        : setValueClinic();
     stateLoad.value = true;
+
   }
 
   RxBool stateSetProfile = true.obs;
@@ -161,13 +162,14 @@ class ProfileController extends GetxController {
     mProfile.address = tcAddress.text;
   }
 
+
   getValueDoctorTherapist() {
     mProfile.name = tName.text;
     mProfile.surname = tFamily.text;
-    mProfile.msn = int.parse(tMsn.text);
+    mProfile.msn =tMsn.text.contains("null")?"0":tMsn.text;
     mProfile.address = tAddress.text;
     mProfile.specialty = tSpecialty.text;
-    mProfile.age = int.parse(tAge.text);
+    mProfile.age =tAge.text.contains("null")?0:int.parse(tAge.text);
     mProfile.mobile = tMobile.text;
 
 

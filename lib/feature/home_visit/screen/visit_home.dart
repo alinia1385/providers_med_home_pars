@@ -127,22 +127,6 @@ class VisitHome extends StatelessWidget {
                                         HomeVisitController
                                             .to.listData[index]!.serviceId!;
                                         Get.toNamed("/PatientsList");
-
-                                        // if (HomeVisitController
-                                        //     .to.listData[index]!.isEnable) {
-                                        //   HomeVisitController
-                                        //           .to.selectModelServices =
-                                        //       HomeVisitController
-                                        //           .to.listData[index]!;
-                                        //   HomeVisitController.to
-                                        //       .secondLoadData();
-                                        // } else {
-                                        //
-                                        //   AppController.to.idService =
-                                        //       HomeVisitController
-                                        //           .to.listData[index]!.serviceId!;
-                                        //   Get.toNamed("/PatientsList");
-                                        // }
                                       },
                                     );
                                   },

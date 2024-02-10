@@ -14,9 +14,7 @@ class HomeVisitRemote
    String? token= await prefs.getString('token');
     App.client.options.headers["Authorization"] = "Bearer $token";
     App.client.options.headers["Accept"] = "application/json";
-   // FormData data = FormData.fromMap({
-   //   "type": "home",//online-home
-   // });
+
     Response response = await App.client.get('op/services/list');
     return BaseListDaynamic.fromJson(response.data);
   }

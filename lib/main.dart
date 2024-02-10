@@ -7,7 +7,6 @@ import 'package:note_app/feature/home_visit/home_visit_init.dart';
 import 'package:note_app/feature/home_visit/screen/visit_home.dart';
 import 'package:note_app/feature/login/login_init.dart';
 import 'package:note_app/feature/login/screen/login.dart';
-import 'package:note_app/feature/patients_info/screen/patients_info.dart';
 import 'package:note_app/feature/patients_list/patients_list_init.dart';
 import 'package:note_app/feature/patients_list/screen/patients_list.dart';
 import 'package:note_app/feature/patients_location/map_init.dart';
@@ -47,8 +46,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/VisitHome", page: ()=>VisitHome(),binding: HomeVisitInit()),
         GetPage(name: "/PatientsList", page: ()=>PatientsList(),binding: PatientsListInit()),
         GetPage(name: "/PatientsRequest", page: ()=>PatientsRequest(),binding: PatientsRequestInit()),
-        GetPage(name: "/PatientsInfo", page: ()=>PatientsInfo()),
-        GetPage(name: "/patients_location", page: ()=>patients_location(),binding: MapInit()),
+        // GetPage(name: "/PatientsInfo", page: ()=>PatientsInfo()),
+        GetPage(name: "/patients_location", page: ()=>PatientsLocation(),binding: MapInit()),
       ],
     );
   }
