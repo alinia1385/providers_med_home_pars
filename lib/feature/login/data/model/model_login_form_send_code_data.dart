@@ -5,8 +5,6 @@ class ModelLoginFormDataSetCode {
   String? code;
   String? type;
 
-
-
   ModelLoginFormDataSetCode({this.mobile,this.code});
 
   ModelLoginFormDataSetCode.fromJson(Map<String, dynamic> json) {

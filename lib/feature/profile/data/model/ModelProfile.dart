@@ -32,7 +32,7 @@ class ModelProfile {
   String? owner_name;
   String? owner_surname;
   String? owner_mobile;
-  int? msn;
+  String? msn;
   String? specialty;
   String? type;
 
@@ -106,7 +106,7 @@ class ModelProfile {
     owner_name = json['owner_name'];
     owner_surname = json['owner_surname'];
     owner_mobile = json['owner_mobile'];
-    msn = json['msn'];
+    msn = json['msn'].toString()??"";
     specialty = json['specialty'];
     type = json['type'];
   }
