@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:note_app/core/const/color.dart';
 import 'package:note_app/core/const/enum.dart';
@@ -18,66 +17,62 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body:
-        Obx(() =>
-        ProfileController.to.stateLoad.value
-            ?
-        Column(
-          children: [
-            Expanded(
-                flex: 2,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(child: Container()),
-                    Expanded(
-                      flex: 2,
-                      child: GestureDetector(
-                        onTap: () {
-                          ProfileController.to.selectProfileImageSend();
-                        },
-                        child:Obx(()=>   ProfileController.to.stateSetProfile.value ? Container(
+      body: Obx(() => ProfileController.to.stateLoad.value
+          ? Column(
+        children: [
+          Expanded(
+              flex: 2,
+              child: Row(
+                children: [
+                  Expanded(child: Container()),
+                  Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                      onTap: () {
+                        ProfileController.to.selectProfileImageSend();
+                      },
+                      child:Obx(()=>   ProfileController.to.stateSetProfile.value ? Container(
 
-                          alignment: Alignment.center,
-                          width: Get.width * 0.5,
-                          height: Get.height,
-                          child:
-                          ProfileController.to.imageAdress.isEmpty
-                              ?
-                          const CircleAvatar(
-                            backgroundColor: ColorConst.primaryDark,
-                            backgroundImage: AssetImage(
-                                "assets/images/person_add_icon.png"),
+                        alignment: Alignment.center,
+                        width: Get.width * 0.5,
+                        height: Get.height,
+                        child:
+                        ProfileController.to.imageAdress.isEmpty
+                            ?
+                        const CircleAvatar(
+                          backgroundColor: ColorConst.primaryDark,
+                          backgroundImage: AssetImage(
+                              "assets/images/person_add_icon.png"),
                         )
-                              : CircleAvatar(
-                            radius: 100,
-                            backgroundImage: NetworkImage(BASEURLPROFILEIMAGE +
-                                ProfileController.to.imageAdress),
-                          ),
-                        ):const Center(
-                            child: Center(
-                              child: CircularProgressIndicator(),))),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(right: Get.width * 0.02),
-                          alignment: Alignment.centerLeft,
-                          width: Get.width * 0.05,
-                          height: Get.height * 0.05,
-                          child: const Image(
-                              image:
-                              AssetImage("assets/images/back.png")),
+                            : CircleAvatar(
+                          radius: 100,
+                          backgroundImage: NetworkImage(BASEURLPROFILEIMAGE +
+                              ProfileController.to.imageAdress),
                         ),
+                      ):const Center(
+                          child: Center(
+                            child: CircularProgressIndicator(),))),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 25,top: 10),
+                        alignment: Alignment.topRight,
+                        width: Get.width * 0.11,
+                        height: Get.height,
+                        child:  Image(
+                            image:
+                            const AssetImage("assets/images/back.png"),width: Get.width*0.09,height: Get.width*0.09),
                       ),
                     ),
-                  ],
-                )),
+                  ),
+                ],
+              )),
              Expanded(
               flex: 7,
               child:AppController.to.type.contains("clinic")?  const Clinic() : const DoctorTherapist(),

@@ -8,6 +8,7 @@ import 'package:note_app/core/widget/ColorLoader3.dart';
 import 'package:note_app/core/widget/toast/toast.dart';
 import 'package:note_app/core/widget/toast/toast_provider.dart';
 import 'package:note_app/feature/login/controller/login_controller.dart';
+import 'package:note_app/feature/login/controller/persian_number_textInput_formatter.dart';
 import 'package:note_app/feature/login/controller/timer_controller.dart';
 
 class Verify extends StatelessWidget {
@@ -63,15 +64,17 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: 40,
+                                    width: Get.width * 0.14,
                                     child: TextFormField(
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.digitsOnly,
+                                          PersianNumberTextInputFormatter(),
+                                        ],
+                                        style: const TextStyle(fontSize: 20, fontFamily: "IRANSANCE",),
                                         focusNode: LoginController
                                             .to.firstTextFieldFocusNode,
                                         controller: LoginController.to.Txt1,
                                         keyboardType: TextInputType.number,
-                                        inputFormatters: <TextInputFormatter>[
-                                          FilteringTextInputFormatter.digitsOnly
-                                        ],
                                         onChanged: (value) {
                                           if (value.length == 1) {
                                             FocusScope.of(context).requestFocus(
@@ -82,6 +85,7 @@ class Verify extends StatelessWidget {
                                         textAlign: TextAlign.center,
                                         maxLength: 1,
                                         decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.04),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -96,19 +100,22 @@ class Verify extends StatelessWidget {
                               ],
                             )),
                         Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 1),
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: 40,
+                                    width: Get.width * 0.14,
                                     child: TextFormField(
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.digitsOnly,
+                                          PersianNumberTextInputFormatter(),
+                                        ],
+                                        style: const TextStyle(fontSize: 20, fontFamily: "IRANSANCE",),
+
                                         focusNode: LoginController
                                             .to.secondTextFieldFocusNode,
                                         controller: LoginController.to.Txt2,
                                         keyboardType: TextInputType.number,
-                                        inputFormatters: <TextInputFormatter>[
-                                          FilteringTextInputFormatter.digitsOnly
-                                        ],
                                         onChanged: (value) {
                                           if (value.isEmpty) {
                                             FocusScope.of(context).requestFocus(
@@ -123,6 +130,7 @@ class Verify extends StatelessWidget {
                                         maxLength: 1,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.04),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -141,15 +149,18 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: 40,
+                                    width: Get.width * 0.14,
                                     child: TextFormField(
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.digitsOnly,
+                                          PersianNumberTextInputFormatter(),
+                                        ],
+                                        style: const TextStyle(fontSize: 20, fontFamily: "IRANSANCE",),
+
                                         focusNode: LoginController
                                             .to.thirdTextFieldFocusNode,
                                         controller: LoginController.to.Txt3,
                                         keyboardType: TextInputType.number,
-                                        inputFormatters: <TextInputFormatter>[
-                                          FilteringTextInputFormatter.digitsOnly
-                                        ],
                                         onChanged: (value) {
                                           if (value.isEmpty) {
                                             FocusScope.of(context).requestFocus(
@@ -164,6 +175,7 @@ class Verify extends StatelessWidget {
                                         maxLength: 1,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.04),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -178,19 +190,21 @@ class Verify extends StatelessWidget {
                               ],
                             )),
                         Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: 40,
-                                    child: TextFormField(
-                                        focusNode: LoginController
+                                    width: Get.width * 0.14,                                    child: TextFormField(
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.digitsOnly,
+                                          PersianNumberTextInputFormatter(),
+                                        ],
+                                    style: const TextStyle(fontSize: 20, fontFamily: "IRANSANCE",),
+
+                                    focusNode: LoginController
                                             .to.fourthTextFieldFocusNode,
                                         controller: LoginController.to.Txt4,
                                         keyboardType: TextInputType.number,
-                                        inputFormatters: <TextInputFormatter>[
-                                          FilteringTextInputFormatter.digitsOnly
-                                        ],
                                         onChanged: (value) {
                                           if (value.isEmpty) {
                                             FocusScope.of(context).requestFocus(
@@ -201,6 +215,7 @@ class Verify extends StatelessWidget {
                                         maxLength: 1,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.04),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -231,15 +246,14 @@ class Verify extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                            ' تا امکان ارسال مجدد کد ',
-                              style: TextStyle(fontSize: 14,
-                                fontFamily: "IRANSANCE",),
+                              ' تا امکان ارسال مجدد کد ',
+                              style: TextStyle(fontSize: 16,fontFamily: "IRANSANCE",),
                             ),
                             Text(
-                              ' $timerText ',
-                              style: const TextStyle(fontSize: 12 , fontFamily: "IRANSANCE"),
+                              ' $timerText ' ,
+                              style: const TextStyle(fontSize: 17,fontWeight: FontWeight.bold),
                             ),
-                            const Icon(Icons.access_time, size: 14,)
+                            const Icon(Icons.access_time,),
                           ],
                         );
                       } else {

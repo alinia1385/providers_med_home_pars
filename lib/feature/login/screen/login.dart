@@ -53,7 +53,7 @@ class Login extends StatelessWidget {
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.digitsOnly
                               ],
-                              style: const TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.black, fontFamily: "IRANSANCE",fontSize: 16,),
                               textAlign: TextAlign.right,
                               decoration: InputDecoration(
                                   counterText: "",
