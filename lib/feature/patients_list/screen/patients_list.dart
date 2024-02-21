@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:note_app/core/const/color.dart';
-import 'package:note_app/core/const/enum.dart';
+
 import 'package:note_app/core/const/url.dart';
 import 'package:note_app/core/controller/AppController.dart';
 import 'package:note_app/core/loader/loader.dart';
-import 'package:note_app/core/widget/toast/toast.dart';
-import 'package:note_app/core/widget/toast/toast_provider.dart';
 import 'package:note_app/feature/patients_list/controller/patients_list_controller.dart';
-import 'dart:js' as js;
 class PatientsList extends StatelessWidget {
   const PatientsList({super.key});
 
@@ -29,46 +26,47 @@ class PatientsList extends StatelessWidget {
             body: Column(
               children: [
                 Expanded(
-                    flex: 2,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: Get.height * 0.1,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(right: Get.width * 0.04),
-                                  alignment: Alignment.centerLeft,
-                                  width: Get.width * 0.1,
-                                  height: Get.height * 0.1,
-                                  child: const Image(
-                                      image:
-                                          AssetImage("assets/images/back.png")),
+                  flex: 2,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: Get.height * 0.07,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(right: 25, top: 10),
+                                alignment: Alignment.centerRight,
+                                width: Get.width * 0.11,
+                                height: Get.height,
+                                child: const Image(
+                                  image: AssetImage("assets/images/back.png"),
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            margin: EdgeInsets.only(left: Get.width * 0.02),
-                            alignment: Alignment.bottomLeft,
-                            width: Get.width,
-                            child: Image.asset(
-                              "assets/images/logo.png",
-                              width: Get.width * 0.2,
-                              height: Get.width * 0.2,
                             ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          margin: EdgeInsets.only(left: Get.width * 0.02),
+                          alignment: Alignment.bottomLeft,
+                          width: Get.width,
+                          child: Image.asset(
+                            "assets/images/logo.png",
+                            width: Get.width * 0.2,
+                            height: Get.width * 0.2,
                           ),
                         ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
                 Expanded(
                     flex: 8,
                     child: Container(
@@ -76,19 +74,19 @@ class PatientsList extends StatelessWidget {
                       padding: EdgeInsets.all(Get.width * 0.03),
                       child: Column(
                         children: [
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "عمومی",
-                                style: TextStyle(
-                                    fontFamily: "IRANSANCE",
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: ColorConst.primaryDark),
-                              )
-                            ],
-                          ),
+                        //   const Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       Text(
+                        //         "عمومی",
+                        //         style: TextStyle(
+                        //             fontFamily: "IRANSANCE",
+                        //             fontSize: 18,
+                        //             fontWeight: FontWeight.bold,
+                        //             color: ColorConst.primaryDark),
+                        //       )
+                        //     ],
+                        //   ),
                           Divider(
                             color: Colors.transparent,
                             height: Get.height * 0.02,
@@ -147,6 +145,11 @@ class PatientsList extends StatelessWidget {
                                                                               .listPersonal[index]
                                                                               .status
                                                                               .toString();
+
+                                                                          AppController.to.requestPersonal = PatientsListController
+                                                                              .to
+                                                                              .listPersonal[index];
+
 
                                                                           Get.toNamed(
                                                                               "/patients_location",

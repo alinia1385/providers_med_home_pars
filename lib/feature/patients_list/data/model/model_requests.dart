@@ -10,6 +10,9 @@ class ModelRequests {
   String? image;
   String? phone;
   String? mobile;
+  String? description;
+  String? address;
+
 
   ModelRequests(
       {this.id,
@@ -22,7 +25,10 @@ class ModelRequests {
         this.surname,
         this.image,
         this.phone,
-        this.mobile});
+        this.mobile,
+        this.description,
+        this.address,
+      });
 
   ModelRequests.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -36,6 +42,8 @@ class ModelRequests {
     image = json['image'];
     phone = json['phone'];
     mobile = json['mobile'];
+    description = json['description'];
+    address = json['address'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +59,8 @@ class ModelRequests {
     data['image'] = this.image;
     data['phone'] = this.phone;
     data['mobile'] = this.mobile;
+    data['description'] = this.description;
+    data['address'] = this.address;
     return data;
   }
 }

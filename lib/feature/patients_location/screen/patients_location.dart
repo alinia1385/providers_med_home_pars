@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_map/flutter_map.dart';
+
 import 'package:note_app/core/const/color.dart';
 import 'package:note_app/core/const/enum.dart';
+import 'package:note_app/core/controller/AppController.dart';
 import 'package:note_app/core/widget/toast/toast.dart';
 import 'package:note_app/core/widget/toast/toast_provider.dart';
 import 'package:note_app/feature/patients_location/controller/location_controller.dart';
-import 'package:latlong2/latlong.dart';
-import 'dart:js' as js;
-import 'package:note_app/feature/patients_location/controller/location_controller.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 
 class PatientsLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Rx state = true.obs;
+
     return GetBuilder<LocationController>(
       init: LocationController(),
       builder: (controller) {
@@ -74,14 +73,101 @@ class PatientsLocation extends StatelessWidget {
                   flex: 3,
                   child:GestureDetector(
                       onTap: (){
-
                         /// js.context.callMethod('open', ['http://maps.google.com/?ll=${LocationController.to.latitude},${LocationController.to.longitude}']);
                         openMap(LocationController.to.latitude.toDouble(),LocationController.to.longitude.toDouble());
                       },
 
-                            child: Container(child:Image.asset("assets/images/map.png",fit: BoxFit.cover),)
+                            child: Container(child:Image.asset("assets/images/map.png",fit: BoxFit.fitWidth),)
                         ),
                       ),
+                Expanded(
+                  flex: 4,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: Get.width*0.02,vertical: Get.height*0.02),
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: ListView(
+
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              AppController.to.requestPersonal.description.toString().length>4?  Text("نام و نام خانوادگی : ",style: TextStyle(
+                                  fontFamily: "IRANSANCE",
+                                  fontSize: Get.width*0.035,
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorConst.black)):Container(),
+                              AppController.to.requestPersonal.description.toString().length>4? SingleChildScrollView(child: Text(   "${AppController.to.requestPersonal.name} ${AppController.to.requestPersonal.surname}" ,   style: TextStyle(
+                                  fontFamily: "IRANSANCE",
+                                  fontSize: Get.width*0.035,
+
+                                  color: ColorConst.black),)):Container(),
+                            ],
+                          ),
+                          const Divider(color: Colors.transparent,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              AppController.to.requestPersonal.description.toString().length>4?  Text("توضیحات : ",style: TextStyle(
+                                  fontFamily: "IRANSANCE",
+                                  fontSize: Get.width*0.035,
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorConst.black)):Container(),
+                              AppController.to.requestPersonal.description.toString().length>4? SingleChildScrollView(child: Text(   AppController.to.requestPersonal.description.toString() ,maxLines: 2,)):Container(),
+                            ],
+                          ),
+                          const Divider(color: Colors.transparent,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              AppController.to.requestPersonal.address.toString().length> 4 ? Text("ادرس : ", style: TextStyle(
+                              fontFamily: "IRANSANCE",
+                              fontSize: Get.width*0.035,
+                              fontWeight: FontWeight.bold,
+                              color: ColorConst.black)):Container(),
+                              AppController.to.requestPersonal.address.toString().length> 4 ?Text(   AppController.to.requestPersonal.description.toString() ,
+                                style: TextStyle(
+                                  fontFamily: "IRANSANCE",
+                                  fontSize: Get.width*0.035,
+
+                                  color: ColorConst.black),):Container(),                            ],
+                          ),
+                          const Divider(color: Colors.transparent,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              AppController.to.requestPersonal.address.toString().length> 4 ? Text("شماره تماس درخواست دهنده : ", style: TextStyle(
+                              fontFamily: "IRANSANCE",
+                              fontSize: Get.width*0.035,
+                              fontWeight: FontWeight.bold,
+                              color: ColorConst.black)):Container(),
+                              AppController.to.requestPersonal.address.toString().length> 4 ?Text(   AppController.to.requestPersonal.phone.toString() ,   style: TextStyle(
+                                  fontFamily: "IRANSANCE",
+                                  fontSize: Get.width*0.035,
+
+                                  color: ColorConst.black),):Container(),                            ],
+                          ),
+                          const Divider(color: Colors.transparent,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              AppController.to.requestPersonal.address.toString().length> 4 ? Text("شماره تماس صاحب حساب : ",
+                                  style: TextStyle(
+                                  fontFamily: "IRANSANCE",
+                                  fontSize: Get.width*0.035,
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorConst.black)):Container(),
+                              AppController.to.requestPersonal.address.toString().length> 4 ?Text(   AppController.to.requestPersonal.mobile.toString() ,   style: TextStyle(
+                                  fontFamily: "IRANSANCE",
+                                  fontSize: Get.width*0.035,
+
+                                  color: ColorConst.black)):Container(),                            ],
+                          ),
+
+                        ],),
+                    ),
+                  ),
+                ),
 
                     ]),
                 ),
@@ -247,7 +333,7 @@ class PatientsLocation extends StatelessWidget {
                                 const TextStyle(color: Colors.black),
                                 titlePadding: EdgeInsets.zero,
                                 radius: 30);
-                          },
+                          }},
                           child: Obx((){
                             if(LocationController.to.indexState.value == 3 || LocationController.to.indexState.value == 5 ){
 

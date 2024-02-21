@@ -1,6 +1,7 @@
 
 import 'package:note_app/core/app.dart';
 import 'package:get/get.dart';
+import 'package:note_app/feature/patients_list/data/model/model_requests.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class AppController extends GetxController with StateMixin
 {
@@ -15,6 +16,8 @@ class AppController extends GetxController with StateMixin
   late final prefs;
   int idService=-1;
   String stateRequest="";
+
+ ModelRequests requestPersonal = ModelRequests();
 
    @override
   void onInit() async{
