@@ -31,7 +31,7 @@ class Profile extends StatelessWidget {
                       onTap: () {
                         ProfileController.to.selectProfileImageSend();
                       },
-                      child:Obx(()=>   ProfileController.to.stateSetProfile.value ? Container(
+                      child:Obx(()=> ProfileController.to.stateSetProfile.value ? Container(
 
                         alignment: Alignment.center,
                         width: Get.width * 0.5,
@@ -100,8 +100,10 @@ class Profile extends StatelessWidget {
 
                           FxToast.showToast(
                             context: context,
-                            toast:  ToastWithoutColor.success(
-                              message: value.message!,textStyle: const TextStyle(color: Colors.red),
+                            toast:  const ToastWithoutColor.success(
+                              message: "اطلاعات با موفقیت ثبت شد",
+                              textStyle: TextStyle(
+                                  color: Colors.black, fontFamily: "IRANSANCE",fontSize: 18),
                               icon: Icons.info_rounded,
                             ),
                             position: ToastPosition.topRight,

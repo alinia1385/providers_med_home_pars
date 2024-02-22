@@ -11,12 +11,12 @@ import 'package:note_app/feature/profile/data/remote/profile_remote.dart';
 class ProfileController extends GetxController {
   static ProfileController get to => Get.find<ProfileController>();
 
-  //doctor  herapist
   final FocusNode fName = FocusNode();
   final FocusNode fFamily = FocusNode();
   final FocusNode fNationalCode = FocusNode();
   final FocusNode fAge = FocusNode();
 
+  //doctor  herapist
   final tName = TextEditingController();
   final tFamily = TextEditingController();
   final tMsn = TextEditingController();
@@ -101,8 +101,8 @@ class ProfileController extends GetxController {
     final baseListDaynamic = await ProfileRemoteDatasource.getProfile();
     mProfile = ModelProfile.fromJson(baseListDaynamic.data!);
     AppController.to.type.contains("clinic")
-        ? setValueDoctorTherapist()
-        : setValueClinic();
+        ? setValueClinic()
+        : setValueDoctorTherapist();
     stateLoad.value = true;
 
   }
@@ -171,6 +171,8 @@ class ProfileController extends GetxController {
     mProfile.specialty = tSpecialty.text;
     mProfile.age =tAge.text.contains("null")?0:int.parse(tAge.text);
     mProfile.mobile = tMobile.text;
+    mProfile.phone1 = tPhone1.text;
+    mProfile.phone2 = tPhone2.text;
 
 
     // ignore: unrelated_type_equality_checks

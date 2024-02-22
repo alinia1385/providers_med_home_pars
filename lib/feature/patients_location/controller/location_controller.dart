@@ -13,20 +13,27 @@ class LocationController extends GetxController {
 
   dynamic argumentData = Get.arguments;
 
+  RxBool state = true.obs;
   @override
   void onInit() {
     super.onInit();
     String tmpData = argumentData[0]['lat-long'].toString();
+    print(tmpData);
     if (tmpData.length > 5) {
       var data = tmpData.split(",");
       latitude.value = double.parse(data[0].toString().trim());
       longitude.value = double.parse(data[1].toString().trim());
-    }
+      state.value = true;
+    }else
+      {
+        state.value=false;
+        // latitude.value=0.0;
+        // latitude.value=0.0;
+      }
     status = argumentData[1]['status'].toString();
     request_id = argumentData[2]['request_id'].toString();
     getState(status);
   }
-
   RxBool progressBar = true.obs;
   RxBool showProgress = false.obs;
   RxBool dialogStatus = true.obs;

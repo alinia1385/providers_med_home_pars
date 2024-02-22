@@ -105,6 +105,8 @@ class Login extends StatelessWidget {
                                   context: context,
                                   toast: ToastWithoutColor.success(
                                     message: value.message!,
+                                    textStyle: const TextStyle(
+                                        color: Colors.black, fontFamily: "IRANSANCE",fontSize: 18),
                                     icon: Icons.info_rounded,
                                   ),
                                   position: ToastPosition.topRight,
@@ -119,6 +121,8 @@ class Login extends StatelessWidget {
                                 context: context,
                                 toast: const ToastWithoutColor.success(
                                     message: "لطفا شماره تلفن خود را وارد کنید",
+                                    textStyle: TextStyle(
+                                        color: Colors.black, fontFamily: "IRANSANCE",fontSize: 18),
                                     icon: Icons.error,
                                     iconColor: Colors.red),
                                 position: ToastPosition.topRight,

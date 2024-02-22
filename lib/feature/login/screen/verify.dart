@@ -64,7 +64,7 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: Get.width * 0.14,
+                                    width: Get.width * 0.13,
                                     child: TextFormField(
                                         inputFormatters: [
                                           FilteringTextInputFormatter.digitsOnly,
@@ -85,7 +85,7 @@ class Verify extends StatelessWidget {
                                         textAlign: TextAlign.center,
                                         maxLength: 1,
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.04),
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.0365),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -104,7 +104,7 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: Get.width * 0.14,
+                                    width: Get.width * 0.13,
                                     child: TextFormField(
                                         inputFormatters: [
                                           FilteringTextInputFormatter.digitsOnly,
@@ -130,7 +130,7 @@ class Verify extends StatelessWidget {
                                         maxLength: 1,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.04),
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.0365),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -149,7 +149,7 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: Get.width * 0.14,
+                                    width: Get.width * 0.13,
                                     child: TextFormField(
                                         inputFormatters: [
                                           FilteringTextInputFormatter.digitsOnly,
@@ -175,7 +175,7 @@ class Verify extends StatelessWidget {
                                         maxLength: 1,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.04),
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.0365),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -194,7 +194,8 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: Get.width * 0.14,                                    child: TextFormField(
+                                    width: Get.width * 0.13,
+                                    child: TextFormField(
                                         inputFormatters: [
                                           FilteringTextInputFormatter.digitsOnly,
                                           PersianNumberTextInputFormatter(),
@@ -215,7 +216,7 @@ class Verify extends StatelessWidget {
                                         maxLength: 1,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.04),
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.0365),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -278,6 +279,8 @@ class Verify extends StatelessWidget {
                                 context: context,
                                 toast: ToastWithoutColor.success(
                                   message: value.message!,
+                                  textStyle: const TextStyle(
+                                      color: Colors.black, fontFamily: "IRANSANCE",fontSize: 18),
                                   icon: Icons.info_rounded,
                                 ),
                                 position: ToastPosition.topRight,
@@ -340,6 +343,8 @@ class Verify extends StatelessWidget {
                                     context: context,
                                     toast: const ToastWithoutColor.success(
                                       message: "خوش آمدید",
+                                        textStyle: TextStyle(
+                                        color: Colors.black, fontFamily: "IRANSANCE",fontSize: 18),
                                       icon: Icons.info_rounded,
                                     ),
                                     position: ToastPosition.topRight,
@@ -349,6 +354,8 @@ class Verify extends StatelessWidget {
                                     context: context,
                                     toast: const ToastWithoutColor.error(
                                         message: "کد وارد شده صحیح نیست.",
+                                        textStyle: TextStyle(
+                                            color: Colors.black, fontFamily: "IRANSANCE",fontSize: 18),
                                         icon: Icons.error,
                                         iconColor: Colors.red
                                     ),
