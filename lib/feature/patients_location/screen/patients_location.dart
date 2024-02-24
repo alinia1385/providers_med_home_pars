@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:note_app/core/const/color.dart';
 import 'package:note_app/core/const/enum.dart';
 import 'package:note_app/core/controller/AppController.dart';
@@ -213,7 +212,7 @@ class PatientsLocation extends StatelessWidget {
                                           4
                                       ? Text(
                                           AppController
-                                              .to.requestPersonal.description
+                                              .to.requestPersonal.address
                                               .toString(),
                                           style: TextStyle(
                                               fontFamily: "IRANSANCE",
@@ -265,12 +264,12 @@ class PatientsLocation extends StatelessWidget {
                                               .toString()
                                               .length >
                                           4
-                                      ? Text("شماره تماس صاحب حساب : ",
-                                          style: TextStyle(
-                                              fontFamily: "IRANSANCE",
-                                              fontSize: Get.width * 0.035,
-                                              fontWeight: FontWeight.bold,
-                                              color: ColorConst.black))
+                                      ?Text("شماره تماس صاحب حساب : ",
+                                            style: TextStyle(
+                                                fontFamily: "IRANSANCE",
+                                                fontSize: Get.width * 0.035,
+                                                fontWeight: FontWeight.bold,
+                                                color: ColorConst.black))
                                       : Container(),
                                   AppController.to.requestPersonal.address
                                               .toString()
@@ -388,7 +387,7 @@ class PatientsLocation extends StatelessWidget {
                                             LocationController.to
                                                 .changeState()
                                                 .then((value) {
-                                              Get.back();
+                                              // Get.back();
                                               FxToast.showToast(
                                                 context: context,
                                                 toast:
@@ -460,8 +459,7 @@ class PatientsLocation extends StatelessWidget {
                               }
                             },
                           child: Obx(() {
-                            if (LocationController.to.indexState.value ==
-                                3 ||
+                            if (LocationController.to.indexState.value == 3 ||
                                 LocationController.to.indexState.value == 5) {
                               return
                              Container();

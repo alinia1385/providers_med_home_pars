@@ -79,7 +79,6 @@ class LocationController extends GetxController {
       "cancel": {"id": 4.obs, "text": "انصراف از خدمت".obs,"message":"درخواست لغو شد".obs},
     };
     indexState = a[data]?["id"] ?? 0.obs;
-    // print(a[data]?["text"]??"درخواست خدمت".obs);
     rxState = a[data]?["text"]??"درخواست خدمت".obs;
     messages = a[data]?["message"]??"درخواست جدید".obs;
   }
