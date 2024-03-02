@@ -44,7 +44,6 @@ class ProfileController extends GetxController {
   ///false is man - true is woman
 
 
-
   RxBool man = false.obs;
   RxBool woman = false.obs;
   String imageAdress = "";
@@ -107,6 +106,7 @@ class ProfileController extends GetxController {
 
   }
 
+  RxBool isContainerVisible = false.obs;
   RxBool stateSetProfile = true.obs;
 
   Future<BaseListDaynamicStandard> setProfile() async {
