@@ -387,13 +387,13 @@ class PatientsLocation extends StatelessWidget {
                                             LocationController.to
                                                 .changeState()
                                                 .then((value) {
-                                              // Get.back();
+                                              Get.back();
                                               FxToast.showToast(
                                                 context: context,
                                                 toast:
                                                     ToastWithoutColor.success(
                                                   message: LocationController
-                                                      .to.messages.value,
+                                                      .to.rxState.value,
                                                   textStyle: const TextStyle(
                                                       color: Colors.black,
                                                       fontFamily: "IRANSANCE",
@@ -428,7 +428,7 @@ class PatientsLocation extends StatelessWidget {
                                           onTap: () {
                                             Get.back();
                                             LocationController
-                                                .to.indexState.value = 5;
+                                                .to.indexState.value = 4;
                                           },
                                           child: Container(
                                             height: Get.height * 0.06,
@@ -460,24 +460,27 @@ class PatientsLocation extends StatelessWidget {
                             },
                           child: Obx(() {
                             if (LocationController.to.indexState.value == 3 ||
-                                LocationController.to.indexState.value == 5) {
+                                LocationController.to.indexState.value == 4) {
                               return
-                             Container();
+
+                                 Container();
+
                             }
                             else{
-                            return Container(
-                            alignment: Alignment.center,
-                            height: Get.height * 0.07,
-                            width: Get.width * 0.45,
-                            decoration: const BoxDecoration(
-                            color: ColorConst.primaryDark,
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(50)),
-                            ),
-                            child: Text(
-                            "ثبت مرحله بعد",
-                            style: SizeButton,
-                            ));
+                            return
+                                  Container(
+                                      alignment: Alignment.center,
+                                      height: Get.height * 0.07,
+                                      width: Get.width * 0.45,
+                                      decoration: const BoxDecoration(
+                                        color: ColorConst.primaryDark,
+                                        borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                      ),
+                                      child: Text(
+                                        "ثبت مرحله بعد",
+                                        style: SizeButton,
+                                      ));
                             }
                           }
                           ),

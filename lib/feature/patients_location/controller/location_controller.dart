@@ -72,15 +72,15 @@ class LocationController extends GetxController {
   getState(String data) {
     print(data);
     Map<String, Map<String, dynamic>> a = {
-      "new": {"id": 0.obs, "text": "درخواست خدمت".obs,"message":"درخواست جدید".obs},
-      "accept": {"id": 1.obs, "text": "شروع خدمت".obs,"message":"درخواست قبول شد".obs},
-      "arrive": {"id": 2.obs, "text": "در مسیر خدمت".obs,"message":"رسیدن به محل خدمت".obs},
-      "finish": {"id": 3.obs, "text": "اتمام خدمت".obs,"message":"اتمام خدمت".obs},
+      "new": {"id": 0.obs, "text": "درخواست خدمت".obs,"message":"شروع خدمت".obs},
+      "accept": {"id": 1.obs, "text": "درخواست قبول شد".obs,"message":"در مسیر خدمت".obs},
+      "arrive": {"id": 2.obs, "text": " در حال رسیدن به محل خدمت".obs,"message":"اتمام خدمت".obs},
+      "finish": {"id": 3.obs, "text": "خدمت پایان یافت".obs,"message":"اتمام خدمت".obs},
       "cancel": {"id": 4.obs, "text": "انصراف از خدمت".obs,"message":"درخواست لغو شد".obs},
     };
     indexState = a[data]?["id"] ?? 0.obs;
     rxState = a[data]?["text"]??"درخواست خدمت".obs;
-    messages = a[data]?["message"]??"درخواست جدید".obs;
+    messages = a[data]?["message"]??"درخواست قبول شد".obs;
   }
 
   RxBool changeStateValue = false.obs;
