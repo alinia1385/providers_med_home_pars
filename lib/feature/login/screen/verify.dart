@@ -64,7 +64,7 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: Get.width * 0.13,
+                                    width: Get.width * 0.115,
                                     child: TextFormField(
                                         inputFormatters: [
                                           FilteringTextInputFormatter.digitsOnly,
@@ -85,7 +85,7 @@ class Verify extends StatelessWidget {
                                         textAlign: TextAlign.center,
                                         maxLength: 1,
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.0365),
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.031),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -104,7 +104,7 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: Get.width * 0.13,
+                                    width: Get.width * 0.115,
                                     child: TextFormField(
                                         inputFormatters: [
                                           FilteringTextInputFormatter.digitsOnly,
@@ -130,7 +130,7 @@ class Verify extends StatelessWidget {
                                         maxLength: 1,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.0365),
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.031),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -149,7 +149,7 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: Get.width * 0.13,
+                                    width: Get.width * 0.115,
                                     child: TextFormField(
                                         inputFormatters: [
                                           FilteringTextInputFormatter.digitsOnly,
@@ -175,7 +175,7 @@ class Verify extends StatelessWidget {
                                         maxLength: 1,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.0365),
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.031),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
@@ -194,7 +194,7 @@ class Verify extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(
-                                    width: Get.width * 0.13,
+                                    width: Get.width * 0.115,
                                     child: TextFormField(
                                         inputFormatters: [
                                           FilteringTextInputFormatter.digitsOnly,
@@ -216,7 +216,7 @@ class Verify extends StatelessWidget {
                                         maxLength: 1,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.0365),
+                                          contentPadding: EdgeInsets.symmetric(vertical: Get.height * 0.031),
                                           counterText: "",
                                           filled: true,
                                           fillColor: Colors.white,
