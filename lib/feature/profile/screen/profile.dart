@@ -32,83 +32,86 @@ class Profile extends StatelessWidget {
                       Get.defaultDialog(
                           barrierDismissible: true,
                           contentPadding: EdgeInsets.zero,
-                          title: "آیا می خواهید از حساب خود خارج شوید",
-                          content: Column(
-                            mainAxisAlignment:
-                            MainAxisAlignment.center,
-                            children: [
-                              const Divider(
-                                color: Colors.transparent,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.dialog(
-                                      SizedBox(
-                                        width: Get.width * 0.1,
-                                        height: Get.width * 0.1,
-                                        child: ColorLoader3(
-                                          radius: 20,
-                                          dotRadius: 5.0,
+                          title: "",
+                          content: Container(
+                            height: Get.height * 0.22,
+                            width: Get.width * 0.8,
+                            child: Column(
+                              mainAxisAlignment:
+                              MainAxisAlignment.center,
+                              children: [
+                                const Text("آیا می خواهید از حساب خود خارج شوید",
+                                    style: TextStyle(color: Colors.black, fontSize: 15, fontFamily: "IRANSANCE",)),
+                                const Divider(
+                                  color: Colors.transparent,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.dialog(
+                                        SizedBox(
+                                          child: ColorLoader3(
+                                            radius: 20,
+                                            dotRadius: 5.0,
+                                          ),
                                         ),
-                                      ),
-                                      barrierDismissible: false);
-                                  Get.offAllNamed("/Login");
-
-                                },
-                                child: Container(
-                                  height: Get.height * 0.06,
-                                  width: Get.width * 0.5,
-                                  decoration: const BoxDecoration(
-                                    color: ColorConst.primaryDark,
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(50)),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "بله",
-                                    style: SizeButton,
-                                  ),
-                                ),
-                              ),
-                              const Divider(
-                                color: Colors.transparent,
-                              ),
-                              GestureDetector(
-                                onTap: (){
-                                  Get.back();
-                                },
-                                child: Container(
-                                  height: Get.height * 0.06,
-                                  width: Get.width * 0.5,
-                                  decoration: BoxDecoration(
-                                    color: ColorConst.primaryDark
-                                        .withOpacity(0.6),
-                                    borderRadius:
-                                    const BorderRadius.all(
-                                        Radius.circular(50)),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "انصراف",
-                                    style: SizeButton,
+                                        barrierDismissible: false);
+                                    Get.offAllNamed("/Login");
+                                  },
+                                  child: Container(
+                                    height: Get.height * 0.06,
+                                    width: Get.width * 0.5,
+                                    decoration: const BoxDecoration(
+                                      color: ColorConst.primaryDark,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(50)),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      "بله",
+                                      style: SizeButton,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                                const Divider(
+                                  color: Colors.transparent,
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Get.back();
+                                  },
+                                  child: Container(
+                                    height: Get.height * 0.06,
+                                    width: Get.width * 0.5,
+                                    decoration: BoxDecoration(
+                                      color: ColorConst.primaryDark
+                                          .withOpacity(0.6),
+                                      borderRadius:
+                                      const BorderRadius.all(
+                                          Radius.circular(50)),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      "انصراف",
+                                      style: SizeButton,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           backgroundColor: Colors.white,
-                          titleStyle: const TextStyle(color: Colors.black, fontSize: 19, fontFamily: "IRANSANCE"),
+                          titleStyle: const TextStyle(color: Colors.black, fontSize: 15, fontFamily: "IRANSANCE",),
                           middleTextStyle:
                           const TextStyle(color: Colors.black),
                           titlePadding: EdgeInsets.zero,
                           radius: 30);
                     },
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 25, top: 12),
-                      alignment: Alignment.topLeft,
-                      width: Get.width * 0.11,
-                      height: Get.height,
-                      child: Image(image: const AssetImage("assets/images/logout.png"),width: Get.width*0.08,height: Get.width*0.08),
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 25, top: 12),
+                          alignment: Alignment.topLeft,
+                          width: Get.width * 0.11,
+                          height: Get.height,
+                          child: const Text("خروج",style: TextStyle(color: Colors.red, fontSize: 14, fontFamily: "IRANSANCE"),),
                     ),
                   )),
                   Expanded(
